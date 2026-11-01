@@ -1,0 +1,129 @@
+.section {
+  background: var(--color-primary);
+}
+
+.intro {
+  max-width: 52rem;
+  margin-bottom: var(--space-10);
+}
+
+.intro > div {
+  margin-bottom: var(--space-5);
+}
+
+.intro > p {
+  color: color-mix(in srgb, var(--color-ivory) 78%, transparent);
+  font-size: var(--font-size-base);
+}
+
+.intro > p + p {
+  margin-top: var(--space-3);
+}
+
+.serviceGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(var(--space-4), 2vw, var(--space-6));
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-6);
+  margin-top: var(--space-12);
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--color-border-on-dark);
+}
+
+.closingCopy p {
+  color: var(--color-surface);
+  font-family: var(--font-heading);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+}
+
+.closingCopy span {
+  display: block;
+  margin-top: var(--space-1);
+  color: color-mix(in srgb, var(--color-ivory) 72%, transparent);
+  font-size: var(--font-size-sm);
+}
+
+.actionLinks {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--space-3);
+}
+
+.actionLinks > button {
+  gap: var(--space-3);
+}
+
+.servicesLink {
+  display: inline-flex;
+  min-height: var(--control-height);
+  align-items: center;
+  padding-inline: var(--space-3);
+  color: var(--color-surface);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  text-decoration: none;
+}
+
+.servicesLink:hover {
+  color: var(--color-accent);
+}
+
+@supports (animation-timeline: view()) {
+  .serviceGrid > article {
+    animation: service-card-reveal linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 24%;
+  }
+
+  @keyframes service-card-reveal {
+    from {
+      opacity: 0.35;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+}
+
+@media (max-width: 64rem) {
+  .serviceGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 36rem) {
+  .serviceGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .actionLinks {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .actionLinks > button,
+  .servicesLink {
+    justify-content: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .serviceGrid > article {
+    animation: none;
+  }
+}

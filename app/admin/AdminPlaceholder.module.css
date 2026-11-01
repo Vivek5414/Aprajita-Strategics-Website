@@ -1,0 +1,47 @@
+.section {
+  min-height: 60vh;
+  display: grid;
+  align-items: center;
+  background: var(--color-background-secondary);
+}
+
+.content {
+  max-width: var(--container-narrow);
+  padding: clamp(var(--space-8), 7vw, var(--space-12));
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-card);
+  text-align: center;
+}
+
+.icon {
+  display: grid;
+  width: 3.5rem;
+  height: 3.5rem;
+  place-items: center;
+  margin: 0 auto var(--space-5);
+  border-radius: var(--radius-md);
+  background: var(--color-background-secondary);
+  color: var(--color-focus);
+}
+
+.eyebrow {
+  color: var(--color-focus);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--letter-spacing-eyebrow);
+  text-transform: uppercase;
+}
+
+.content h1 {
+  margin-top: var(--space-3);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  letter-spacing: var(--letter-spacing-tight);
+}
+
+.content > p:not(.eyebrow) {
+  max-width: 42rem;
+  margin: var(--space-4) auto var(--space-6);
+  color: var(--color-text-muted);
+}

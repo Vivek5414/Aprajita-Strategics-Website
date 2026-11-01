@@ -1,0 +1,38 @@
+.section {
+  position: relative;
+  overflow: hidden;
+  background: var(--color-background-secondary);
+}
+
+.section h2 {
+  max-width: 46rem;
+  font-size: var(--font-size-3xl);
+  letter-spacing: var(--letter-spacing-tight);
+}
+
+.section p {
+  max-width: 46rem;
+  margin-top: var(--space-3);
+  color: var(--color-text-muted);
+}
+
+.section a,
+.section button {
+  margin-top: var(--space-6);
+}
+
+.section > div {
+  position: relative;
+  z-index: 1;
+}
+
+.section::after {
+  position: absolute;
+  top: -8rem;
+  right: max(4vw, calc((100vw - var(--container-wide)) / 2));
+  width: 18rem;
+  aspect-ratio: 1;
+  border: 1px solid color-mix(in srgb, var(--color-sand) 70%, transparent);
+  border-radius: 50%;
+  content: "";
+}

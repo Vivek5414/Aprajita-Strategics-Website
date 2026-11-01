@@ -1,0 +1,320 @@
+.contactSection {
+  padding-top: var(--space-10);
+  padding-bottom: var(--space-8);
+  background: var(--color-background);
+}
+
+.contactGrid {
+  display: grid;
+  grid-template-columns: minmax(17rem, 0.8fr) minmax(0, 1.2fr);
+  gap: clamp(var(--space-8), 7vw, var(--space-16));
+  align-items: start;
+}
+
+.information {
+  padding-top: var(--space-4);
+}
+
+.companyName,
+.formEyebrow {
+  color: var(--color-focus);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--letter-spacing-eyebrow);
+  text-transform: uppercase;
+}
+
+.information > h2,
+.formPanel > h2,
+.location h2 {
+  margin-top: var(--space-3);
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  letter-spacing: var(--letter-spacing-tight);
+}
+
+.introduction,
+.formIntroduction {
+  margin-top: var(--space-3);
+  color: var(--color-text-muted);
+}
+
+.detailList {
+  display: grid;
+  gap: var(--space-5);
+  margin-top: var(--space-8);
+}
+
+.detail {
+  display: grid;
+  grid-template-columns: 2.75rem minmax(0, 1fr);
+  align-items: start;
+  gap: var(--space-4);
+  padding: var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+}
+
+.icon {
+  display: grid;
+  width: 2.75rem;
+  height: 2.75rem;
+  place-items: center;
+  border-radius: var(--radius-sm);
+  background: var(--color-primary);
+  color: var(--color-accent);
+}
+
+.detail h3 {
+  margin-bottom: var(--space-1);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+}
+
+.detail address,
+.detailText {
+  display: block;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+  font-style: normal;
+  line-height: var(--line-height-body);
+}
+
+.detail address span {
+  display: block;
+}
+
+.detail a {
+  color: var(--color-secondary);
+  font-size: var(--font-size-sm);
+  overflow-wrap: anywhere;
+  text-decoration: none;
+}
+
+.detail a:hover {
+  color: var(--color-focus);
+  text-decoration: underline;
+}
+
+.phoneActions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+}
+
+.callButton {
+  display: inline-flex;
+  min-height: var(--control-height-large);
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-6);
+  border: 1px solid var(--color-primary);
+  border-radius: var(--radius-sm);
+  background: var(--color-primary);
+  color: var(--color-surface) !important;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  text-decoration: none !important;
+  transition:
+    background-color var(--transition-fast),
+    border-color var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.callButton:hover {
+  transform: translateY(-1px);
+  border-color: var(--color-secondary);
+  background: var(--color-secondary);
+}
+
+.detail .whatsAppButton {
+  display: inline-flex;
+  min-height: var(--control-height-large);
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-6);
+  border: 1px solid var(--color-whatsapp);
+  border-radius: var(--radius-sm);
+  background: var(--color-whatsapp);
+  color: var(--color-surface);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  text-decoration: none;
+  transition:
+    background-color var(--transition-fast),
+    border-color var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.detail .whatsAppButton:hover {
+  transform: translateY(-1px);
+  border-color: var(--color-whatsapp-hover);
+  background: var(--color-whatsapp-hover);
+  color: var(--color-surface);
+}
+
+.whatsAppIcon {
+  position: relative;
+  display: grid;
+  width: 1.5rem;
+  height: 1.5rem;
+  flex: 0 0 auto;
+  place-items: center;
+}
+
+.whatsAppIcon svg:first-child {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.whatsAppIcon svg:last-child {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0.625rem;
+  height: 0.625rem;
+  transform: translate(-50%, -50%);
+}
+
+@media (max-width: 36rem) {
+  .phoneActions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .callButton,
+  .whatsAppButton {
+    width: fit-content;
+    min-width: 12rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .whatsAppButton,
+  .callButton {
+    transition: none;
+  }
+}
+
+.formPanel {
+  padding: clamp(var(--space-6), 4vw, var(--space-10));
+  border-top: 3px solid var(--color-accent);
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+  background: var(--color-background-secondary);
+  box-shadow: var(--shadow-card);
+}
+
+.formPanel > h2 {
+  max-width: 34rem;
+}
+
+.formIntroduction {
+  max-width: 45rem;
+  margin-bottom: var(--space-6);
+  font-size: var(--font-size-sm);
+}
+
+.locationSection {
+  margin-top: 0;
+  padding-block: var(--space-8);
+  background: var(--color-background-secondary);
+}
+
+.location {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-8);
+}
+
+.locationInformation {
+  min-width: 0;
+  flex: 1 1 0;
+}
+
+.locationInformation > p:last-child {
+  margin-top: var(--space-4);
+  color: var(--color-text-muted);
+  line-height: var(--line-height-body);
+}
+
+.locationMapColumn {
+  min-width: 0;
+  flex: 1 1 0;
+}
+
+.mapPreview {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-card);
+}
+
+.mapPreview iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.mapLink {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+}
+
+.mapLink:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: -4px;
+}
+
+.visuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  clip-path: inset(50%);
+}
+
+.directionsLink {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+  color: var(--color-primary);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  text-decoration: none;
+}
+
+.directionsLink:hover {
+  color: var(--color-focus);
+  text-decoration: underline;
+}
+
+@media (max-width: 48rem) {
+  .contactGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .location {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .locationInformation,
+  .locationMapColumn {
+    width: 100%;
+  }
+}

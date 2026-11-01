@@ -1,0 +1,195 @@
+.section {
+  background: var(--color-background-secondary);
+}
+
+.heading :global(.heading) {
+  max-width: 46rem;
+  margin-bottom: clamp(var(--space-8), 5vw, var(--space-12));
+}
+
+.heading :global(.eyebrow) {
+  margin-bottom: var(--space-3);
+}
+
+.heading :global(.title) {
+  max-width: 20ch;
+  font-size: clamp(2rem, 4vw, 3.25rem);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--letter-spacing-tight);
+  line-height: 1.12;
+}
+
+.heading :global(.description) {
+  max-width: 40rem;
+  margin-top: var(--space-4);
+  font-size: clamp(var(--font-size-base), 1.5vw, var(--font-size-lg));
+  line-height: var(--line-height-body);
+}
+
+.list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-5);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  display: flex;
+  min-width: 0;
+  min-height: 14rem;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: clamp(var(--space-5), 2vw, var(--space-7));
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-card);
+  transition:
+    border-color 300ms ease,
+    box-shadow 300ms ease,
+    transform 300ms ease;
+}
+
+.item:hover {
+  transform: translateY(-4px);
+  border-color: color-mix(in srgb, var(--color-accent) 48%, var(--color-border));
+  box-shadow: var(--shadow-header);
+}
+
+.iconFrame {
+  display: grid;
+  width: 3.25rem;
+  height: 3.25rem;
+  flex: 0 0 auto;
+  place-items: center;
+  border: 1px solid color-mix(in srgb, var(--color-accent) 28%, transparent);
+  border-radius: var(--radius-md);
+  background: color-mix(in srgb, var(--color-accent) 10%, var(--color-surface));
+  color: var(--color-accent);
+  transition:
+    background-color 300ms ease,
+    box-shadow 300ms ease,
+    transform 300ms ease;
+}
+
+.item:hover .iconFrame {
+  transform: scale(1.06);
+  background: color-mix(in srgb, var(--color-accent) 16%, var(--color-surface));
+  box-shadow: 0 0 1.25rem color-mix(in srgb, var(--color-accent) 22%, transparent);
+}
+
+.item h3 {
+  margin-top: var(--space-5);
+  color: var(--color-primary);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: -0.015em;
+  line-height: var(--line-height-heading);
+}
+
+.item p {
+  margin-top: var(--space-3);
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-body);
+}
+
+.revealReady:not(.visible) .heading :global(.eyebrow),
+.revealReady:not(.visible) .heading :global(.title),
+.revealReady:not(.visible) .heading :global(.description),
+.revealReady:not(.visible) .item {
+  opacity: 0;
+  transform: translateY(0.75rem);
+}
+
+.visible .heading :global(.eyebrow),
+.visible .heading :global(.title),
+.visible .heading :global(.description),
+.visible .item {
+  animation: expertise-reveal 600ms ease-out both;
+}
+
+.visible .heading :global(.title) {
+  animation-delay: 80ms;
+}
+
+.visible .heading :global(.description) {
+  animation-delay: 150ms;
+}
+
+.visible .item:nth-child(1) {
+  animation-delay: 180ms;
+}
+
+.visible .item:nth-child(2) {
+  animation-delay: 240ms;
+}
+
+.visible .item:nth-child(3) {
+  animation-delay: 300ms;
+}
+
+.visible .item:nth-child(4) {
+  animation-delay: 360ms;
+}
+
+.visible .item:nth-child(5) {
+  animation-delay: 420ms;
+}
+
+.visible .item:nth-child(6) {
+  animation-delay: 480ms;
+}
+
+@keyframes expertise-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(0.75rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 64rem) {
+  .list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 40rem) {
+  .list {
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+
+  .item {
+    min-height: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .revealReady:not(.visible) .heading :global(.eyebrow),
+  .revealReady:not(.visible) .heading :global(.title),
+  .revealReady:not(.visible) .heading :global(.description),
+  .revealReady:not(.visible) .item {
+    opacity: 1;
+    transform: none;
+  }
+
+  .visible .heading :global(.eyebrow),
+  .visible .heading :global(.title),
+  .visible .heading :global(.description),
+  .visible .item {
+    animation: none;
+  }
+
+  .item,
+  .iconFrame {
+    transition: none;
+  }
+}

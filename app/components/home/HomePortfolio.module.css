@@ -1,0 +1,27 @@
+.section {
+  background: var(--color-background);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
+  gap: clamp(var(--space-6), 3vw, var(--space-8));
+  counter-reset: portfolio-item;
+}
+
+.allProjects {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--space-8);
+}
+
+.allProjects a {
+  gap: var(--space-3);
+}
+
+@media (max-width: 40rem) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,95 @@
+.actions {
+  position: fixed;
+  z-index: 30;
+  right: var(--space-5);
+  bottom: calc(var(--space-5) + env(safe-area-inset-bottom));
+  display: flex;
+  flex-direction: column-reverse;
+  gap: var(--space-3);
+}
+
+.button {
+  display: grid;
+  width: 3.5rem;
+  height: 3.5rem;
+  place-items: center;
+  border: 1px solid transparent;
+  border-radius: var(--radius-pill);
+  color: var(--color-surface);
+  box-shadow: var(--shadow-card);
+  text-decoration: none;
+  transition:
+    background-color var(--transition-fast),
+    border-color var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.button:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 2px var(--color-surface);
+}
+
+.button:hover {
+  transform: translateY(-2px);
+  color: var(--color-surface);
+}
+
+.call {
+  border-color: var(--color-primary);
+  background: var(--color-primary);
+}
+
+.call:hover {
+  border-color: var(--color-secondary);
+  background: var(--color-secondary);
+}
+
+.whatsApp {
+  border-color: var(--color-whatsapp);
+  background: var(--color-whatsapp);
+  color: var(--color-surface);
+}
+
+.whatsApp:hover {
+  border-color: var(--color-whatsapp-hover);
+  background: var(--color-whatsapp-hover);
+  color: var(--color-surface);
+}
+
+.whatsAppIcon {
+  position: relative;
+  display: grid;
+  width: 1.75rem;
+  height: 1.75rem;
+  place-items: center;
+  color: var(--color-surface);
+}
+
+.whatsAppIcon svg:first-child {
+  width: 1.75rem;
+  height: 1.75rem;
+}
+
+.whatsAppIcon svg:last-child {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0.75rem;
+  height: 0.75rem;
+  transform: translate(-50%, -50%);
+  color: var(--color-surface);
+}
+
+@media (max-width: 36rem) {
+  .actions {
+    right: var(--space-4);
+    bottom: calc(var(--space-4) + env(safe-area-inset-bottom));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button {
+    transition: none;
+  }
+}

@@ -1,0 +1,144 @@
+.backdrop {
+  position: fixed;
+  z-index: var(--z-modal);
+  inset: 0;
+  display: grid;
+  overflow-y: auto;
+  place-items: center;
+  padding:
+    max(var(--space-5), env(safe-area-inset-top))
+    max(var(--space-5), env(safe-area-inset-right))
+    max(var(--space-5), env(safe-area-inset-bottom))
+    max(var(--space-5), env(safe-area-inset-left));
+  background: var(--color-overlay-strong);
+  animation: fade-in var(--transition-fast) both;
+}
+
+.dialog {
+  position: relative;
+  width: min(100%, 33.75rem);
+  max-height: min(90vh, 42rem);
+  max-height: min(90dvh, 42rem);
+  overflow-y: auto;
+  padding: clamp(var(--space-6), 4vw, var(--space-8));
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-modal);
+  animation: scale-in var(--transition-standard) both;
+}
+
+.header {
+  position: sticky;
+  z-index: 1;
+  top: calc(-1 * clamp(var(--space-6), 4vw, var(--space-8)));
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-6);
+  margin: calc(-1 * clamp(var(--space-6), 4vw, var(--space-8)))
+    calc(-1 * clamp(var(--space-6), 4vw, var(--space-8))) var(--space-6);
+  padding: clamp(var(--space-6), 4vw, var(--space-8));
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-surface);
+}
+
+.header h2 {
+  max-width: 26rem;
+  font-size: clamp(1.75rem, 4vw, 2.125rem);
+  letter-spacing: var(--letter-spacing-tight);
+}
+
+.header > div > p:last-child {
+  max-width: 25rem;
+  margin-top: var(--space-3);
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+}
+
+.close {
+  display: grid;
+  width: var(--control-height);
+  height: var(--control-height);
+  flex: 0 0 auto;
+  place-items: center;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  color: var(--color-primary);
+  cursor: pointer;
+  transition:
+    border-color var(--transition-fast),
+    background-color var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.close:hover {
+  border-color: var(--color-accent);
+  background: var(--color-background-secondary);
+  transform: rotate(4deg);
+}
+
+.close:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 3px;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scale-in {
+  from {
+    transform: translateY(var(--space-2)) scale(0.98);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+@media (max-width: 36rem) {
+  .backdrop {
+    padding:
+      max(var(--space-3), env(safe-area-inset-top))
+      max(var(--space-3), env(safe-area-inset-right))
+      max(var(--space-3), env(safe-area-inset-bottom))
+      max(var(--space-3), env(safe-area-inset-left));
+  }
+
+  .dialog {
+    width: min(100%, 33.75rem);
+    max-height: min(92vh, 42rem);
+    max-height: min(92dvh, 42rem);
+    padding: var(--space-5);
+  }
+
+  .header {
+    top: calc(-1 * var(--space-5));
+    gap: var(--space-3);
+    margin: calc(-1 * var(--space-5)) calc(-1 * var(--space-5)) var(--space-5);
+    padding: var(--space-5);
+  }
+
+  .header h2 {
+    font-size: var(--font-size-3xl);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .backdrop,
+  .dialog,
+  .close {
+    animation: none;
+    transition: none;
+  }
+}

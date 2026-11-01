@@ -1,0 +1,23 @@
+.catalogue {
+  padding-top: var(--space-12);
+  background: var(--color-background-secondary);
+}
+
+.serviceGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: stretch;
+  gap: clamp(var(--space-5), 2vw, var(--space-7));
+}
+
+@media (max-width: 64rem) {
+  .serviceGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 36rem) {
+  .serviceGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

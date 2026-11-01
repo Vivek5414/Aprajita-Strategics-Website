@@ -1,0 +1,22 @@
+.section {
+  background: var(--color-background);
+}
+
+.grid {
+  gap: var(--space-5);
+}
+
+.grid > article:nth-child(2) {
+  margin-top: var(--space-8);
+}
+
+.grid > article:nth-child(3) {
+  margin-top: var(--space-16);
+}
+
+@media (max-width: 64rem) {
+  .grid > article:nth-child(2),
+  .grid > article:nth-child(3) {
+    margin-top: 0;
+  }
+}

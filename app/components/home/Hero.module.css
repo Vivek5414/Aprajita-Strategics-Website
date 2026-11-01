@@ -1,0 +1,282 @@
+.hero {
+  position: relative;
+  display: flex;
+  min-height: max(42rem, 100svh);
+  align-items: center;
+  overflow: hidden;
+  isolation: isolate;
+  background: var(--color-primary);
+}
+
+.image {
+  z-index: -2;
+  object-fit: cover;
+  object-position: center 48%;
+  animation: image-reveal var(--duration-image-reveal) ease-out both;
+}
+
+.overlay {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background:
+    linear-gradient(
+      90deg,
+      var(--color-overlay-strong) 0%,
+      color-mix(in srgb, var(--color-overlay-strong) 82%, transparent) 42%,
+      color-mix(in srgb, var(--color-overlay-medium) 72%, transparent) 100%
+    ),
+    linear-gradient(
+      0deg,
+      color-mix(in srgb, var(--color-primary) 54%, transparent) 0%,
+      transparent 42%
+    );
+}
+
+.content {
+  width: min(100% - 2 * var(--container-gutter), var(--container-wide));
+  margin-inline: auto;
+  padding-block: clamp(5rem, 12vh, 9rem);
+  animation: content-reveal
+    var(--duration-content-reveal)
+    var(--duration-reveal-delay)
+    ease-out
+    both;
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-6);
+  color: var(--color-accent);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--letter-spacing-eyebrow-wide);
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+.eyebrowRule {
+  width: 2rem;
+  height: 1px;
+  flex: 0 0 auto;
+  background: currentColor;
+}
+
+.title {
+  max-width: 62rem;
+  color: var(--color-surface);
+  font-size: var(--font-size-hero);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: -0.055em;
+  line-height: 1.08;
+}
+
+.title span {
+  color: var(--color-surface);
+  font-weight: var(--font-weight-semibold);
+}
+
+.description {
+  max-width: 42rem;
+  margin-top: var(--space-8);
+  color: color-mix(in srgb, var(--color-surface) 88%, transparent);
+  font-size: var(--font-size-lead);
+  line-height: 1.75;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-4);
+  margin-top: var(--space-10);
+}
+
+.primaryAction,
+.secondaryAction {
+  display: inline-flex;
+  min-height: var(--control-height-large);
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-6);
+  padding: var(--space-4) var(--space-6);
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.3;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  font-family: var(--font-body);
+  transition:
+    background-color var(--transition-standard),
+    border-color var(--transition-standard),
+    color var(--transition-standard),
+    transform var(--transition-standard);
+}
+
+.primaryAction {
+  background: var(--color-accent);
+  color: var(--color-primary);
+}
+
+.primaryAction:hover {
+  transform: translateY(-2px);
+  background: var(--color-surface);
+  color: var(--color-primary);
+}
+
+.secondaryAction {
+  border-color: color-mix(in srgb, var(--color-surface) 68%, transparent);
+  background: transparent;
+  color: var(--color-surface);
+}
+
+.secondaryAction:hover {
+  transform: translateY(-2px);
+  border-color: var(--color-surface);
+  background: color-mix(in srgb, var(--color-surface) 10%, transparent);
+  color: var(--color-surface);
+}
+
+.actionArrow {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-regular);
+  line-height: 1;
+  transition: transform var(--transition-standard);
+}
+
+.primaryAction:hover .actionArrow {
+  transform: translateX(3px);
+}
+
+.imageLabel {
+  position: absolute;
+  right: var(--container-gutter);
+  bottom: var(--space-8);
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  color: color-mix(in srgb, var(--color-surface) 82%, transparent);
+  font-size: var(--font-size-xs);
+  letter-spacing: 0.04em;
+}
+
+.imageLabelRule {
+  width: 2rem;
+  height: 1px;
+  background: var(--color-accent);
+}
+
+@keyframes content-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(1rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes image-reveal {
+  from {
+    opacity: 0.65;
+    transform: scale(1.035);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media (max-width: 48rem) {
+  .hero {
+    min-height: max(42rem, 100svh);
+  }
+
+  .overlay {
+    background:
+      linear-gradient(
+        90deg,
+        color-mix(in srgb, var(--color-primary) 88%, transparent) 0%,
+        color-mix(in srgb, var(--color-primary) 74%, transparent) 100%
+      ),
+      linear-gradient(
+        0deg,
+        color-mix(in srgb, var(--color-primary) 62%, transparent) 0%,
+        transparent 60%
+      );
+  }
+
+  .content {
+    padding-block: var(--space-20);
+  }
+
+  .title {
+    max-width: 44rem;
+  }
+
+  .description {
+    max-width: 38rem;
+  }
+}
+
+@media (max-width: 36rem) {
+  .hero {
+    min-height: max(46rem, 100svh);
+  }
+
+  .content {
+    padding-block: var(--space-16) var(--space-20);
+  }
+
+  .eyebrow {
+    display: block;
+    margin-bottom: var(--space-5);
+    font-size: var(--font-size-2xs);
+    letter-spacing: 0.08em;
+  }
+
+  .eyebrowRule {
+    display: inline-block;
+    width: 1.5rem;
+    margin-right: var(--space-2);
+    vertical-align: middle;
+  }
+
+  .eyebrow > span:not(.eyebrowRule) {
+    margin-inline: var(--space-1);
+  }
+
+  .title {
+    letter-spacing: -0.05em;
+  }
+
+  .description {
+    margin-top: var(--space-6);
+    font-size: var(--font-size-base);
+    line-height: 1.65;
+  }
+
+  .actions {
+    align-items: stretch;
+    flex-direction: column;
+    gap: var(--space-3);
+    margin-top: var(--space-8);
+  }
+
+  .primaryAction,
+  .secondaryAction {
+    width: 100%;
+  }
+
+  .imageLabel {
+    display: none;
+  }
+}

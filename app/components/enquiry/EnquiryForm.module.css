@@ -1,0 +1,193 @@
+.form {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.quickForm {
+  gap: var(--space-5);
+}
+
+.quickFields {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-5);
+}
+
+.field {
+  display: grid;
+  min-width: 0;
+  gap: var(--space-2);
+}
+
+.field label {
+  color: var(--color-primary);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+}
+
+.field label span {
+  color: var(--color-accent);
+}
+
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  min-height: var(--control-height);
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: color-mix(in srgb, var(--color-surface) 82%, var(--color-background));
+  color: var(--color-primary);
+  font: inherit;
+  font-size: var(--font-size-sm);
+  transition:
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.field textarea {
+  min-height: 8rem;
+  resize: vertical;
+}
+
+.field input:focus-visible,
+.field select:focus-visible,
+.field textarea:focus-visible {
+  border-color: var(--color-accent);
+  outline: 2px solid var(--color-accent);
+  outline-offset: 1px;
+}
+
+.field input::placeholder,
+.field textarea::placeholder {
+  color: var(--color-text-muted);
+}
+
+.fullWidth {
+  grid-column: 1 / -1;
+}
+
+.submit {
+  justify-self: start;
+  gap: var(--space-3);
+}
+
+.quickForm .submit {
+  width: 100%;
+  min-height: 3.25rem;
+  color: var(--color-primary);
+}
+
+.quickForm .submit:hover:not(:disabled) {
+  border-color: var(--color-primary);
+  background: var(--color-primary);
+  color: var(--color-surface);
+}
+
+.quickForm .submit:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.quickForm .submit:disabled {
+  cursor: wait;
+}
+
+.field input[aria-invalid="true"],
+.field select[aria-invalid="true"] {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 1px var(--color-accent);
+}
+
+.fieldError {
+  color: var(--color-primary);
+  font-size: var(--font-size-xs);
+  line-height: 1.4;
+}
+
+.handoffPanel {
+  display: grid;
+  justify-items: start;
+  gap: var(--space-4);
+  padding-block: var(--space-3);
+}
+
+.handoffPanel h3 {
+  font-size: var(--font-size-xl);
+}
+
+.handoffPanel p {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+}
+
+.cancel {
+  min-height: var(--control-height-compact);
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--color-primary);
+  cursor: pointer;
+  font: inherit;
+  font-size: var(--font-size-sm);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.status {
+  max-width: 62ch;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-xs);
+}
+
+.prepared {
+  padding: var(--space-4);
+  border-left: 3px solid var(--color-accent);
+  background: var(--color-background-secondary);
+  color: var(--color-primary);
+  border-radius: var(--radius-sm);
+}
+
+.error {
+  color: var(--color-focus);
+  font-weight: var(--font-weight-semibold);
+}
+
+.field input:user-invalid,
+.field select:user-invalid,
+.field textarea:user-invalid {
+  border-color: var(--color-focus);
+}
+
+@media (max-width: 30rem) {
+  .quickFields {
+    gap: var(--space-4);
+  }
+
+  .quickForm .submit {
+    justify-self: stretch;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .field input,
+  .field select,
+  .field textarea {
+    transition: none;
+  }
+}
+
+@media (max-width: 36rem) {
+  .fields {
+    grid-template-columns: 1fr;
+  }
+
+  .fullWidth {
+    grid-column: auto;
+  }
+}
