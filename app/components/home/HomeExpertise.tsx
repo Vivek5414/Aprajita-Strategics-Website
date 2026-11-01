@@ -1,6 +1,7 @@
 "use client";
 
 import {
+  ArrowUpRight,
   BadgeCheck,
   Boxes,
   Building2,
@@ -12,6 +13,7 @@ import {
 import { useEffect, useRef, useState } from "react";
 import SectionHeading from "@/app/components/ui/SectionHeading";
 import { homepageExpertise, type HomepageExpertise } from "@/app/data/homepage";
+import { updateCardPointer } from "./cardPointerEffects";
 import styles from "./HomeExpertise.module.css";
 
 const icons: Record<HomepageExpertise["title"], LucideIcon> = {
@@ -76,16 +78,30 @@ export default function HomeExpertise() {
           />
         </div>
         <ul className={styles.list}>
-          {homepageExpertise.map((item) => {
+          {homepageExpertise.map((item, index) => {
             const Icon = icons[item.title];
             return (
-              <li className={styles.item} key={item.title}>
-                <span className={styles.iconFrame}>
-                  <Icon aria-hidden="true" size={24} strokeWidth={1.7} />
-                </span>
-                <div>
+              <li
+                className={styles.item}
+                key={item.title}
+                onPointerMove={(event) => updateCardPointer(event, true)}
+                onPointerLeave={(event) => updateCardPointer(event, false)}
+              >
+                <div className={styles.cardTop}>
+                  <span className={styles.iconFrame}>
+                    <Icon aria-hidden="true" size={27} strokeWidth={1.55} />
+                  </span>
+                  <span className={styles.number} aria-hidden="true">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                </div>
+                <div className={styles.cardContent}>
                   <h3>{item.title}</h3>
                   <p>{item.description}</p>
+                </div>
+                <div className={styles.cardFooter} aria-hidden="true">
+                  <span />
+                  <ArrowUpRight className={styles.arrow} size={19} strokeWidth={1.7} />
                 </div>
               </li>
             );

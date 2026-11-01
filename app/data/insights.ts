@@ -71,10 +71,10 @@ export const insights: Insight[] = [
     ],
     authorBio,
     image: {
-      src: "/images/blogs/construction-trends-and-sustainable-architecture.jpg",
-      alt: "Top 10 Construction Trends for 2026",
+      src: "/images/blog/construction-project-2026.webp",
+      alt: "Modern building construction and architectural development.",
       originalUrl:
-        "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&q=80",
+        "https://commons.wikimedia.org/wiki/File:Moscow,_Kvartal_Serebryany_Bor_construction,_June_2026_01.jpg",
     },
     originalUrl: "https://www.aprajitastrategics.com/blog/1",
   },
@@ -114,7 +114,7 @@ export const insights: Insight[] = [
     ],
     authorBio,
     image: {
-      src: "/images/blogs/construction-trends-and-sustainable-architecture.jpg",
+      src: "/images/services/green-building-solutions.webp",
       alt: "Sustainable Architecture: Building for the Future",
       originalUrl:
         "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&q=80",

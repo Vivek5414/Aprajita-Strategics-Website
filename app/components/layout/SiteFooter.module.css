@@ -34,10 +34,33 @@
 }
 
 .logo {
-  display: inline-block;
-  width: 6rem;
-  height: 6rem;
+  display: inline-grid;
+  width: 7rem;
+  height: 7rem;
+  place-items: center;
+  padding: var(--space-2);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: linear-gradient(
+    145deg,
+    var(--color-surface),
+    color-mix(in srgb, var(--color-background) 72%, var(--color-surface))
+  );
+  box-shadow: var(--shadow-card);
   text-decoration: none;
+  transition:
+    transform var(--transition-standard),
+    box-shadow var(--transition-standard);
+}
+
+.logo:hover {
+  transform: scale(1.035);
+  box-shadow: var(--shadow-modal);
+}
+
+.logo:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
 }
 
 .logoImage {
@@ -245,6 +268,11 @@
 }
 
 @media (max-width: 36rem) {
+  .logo {
+    width: 6.25rem;
+    height: 6.25rem;
+  }
+
   .serviceColumns {
     grid-template-columns: 1fr;
     gap: var(--space-3);
@@ -265,7 +293,8 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .adminLink {
+  .adminLink,
+  .logo {
     transition: none;
   }
 }

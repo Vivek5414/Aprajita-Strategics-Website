@@ -1,62 +1,384 @@
 .section {
-  background: var(--color-background);
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background-color: var(--color-background);
+  background-image:
+    radial-gradient(
+      ellipse at 14% 78%,
+      color-mix(in srgb, var(--color-accent) 8%, transparent),
+      transparent 42%
+    ),
+    linear-gradient(
+      120deg,
+      color-mix(in srgb, var(--color-surface) 38%, transparent),
+      transparent 58%
+    );
+}
+
+.section::after {
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    background-image: repeating-linear-gradient(
+      135deg,
+      transparent 0,
+      transparent 4.9rem,
+      color-mix(in srgb, var(--color-primary) 2%, transparent) 5rem
+    );
+    background-size: 7rem 7rem;
+    content: "";
+    mask-image: linear-gradient(110deg, black, transparent 70%);
+    pointer-events: none;
+    animation: values-pattern-drift 36s linear infinite;
+}
+
+.section::before {
+  position: absolute;
+  z-index: -1;
+  top: 50%;
+  left: max(-8rem, calc((100vw - var(--container-wide)) / 2));
+  width: clamp(18rem, 34vw, 32rem);
+  aspect-ratio: 1;
+  transform: translateY(-50%);
+  border: 1px solid color-mix(in srgb, var(--color-primary) 7%, transparent);
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 2.5rem color-mix(in srgb, var(--color-primary) 1.8%, transparent),
+    0 0 0 5rem color-mix(in srgb, var(--color-primary) 1.2%, transparent);
+  content: "";
+  pointer-events: none;
+}
+
+.heading {
+  position: relative;
+  max-width: 48rem;
+  margin-bottom: clamp(var(--space-8), 5vw, var(--space-12));
+}
+
+.heading :global(h2) {
+  position: relative;
+  max-width: 17ch;
+  font-size: clamp(2.25rem, 4.5vw, 3.75rem);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--letter-spacing-tight);
+  line-height: 1.08;
+}
+
+.heading :global(h2)::after {
+  display: block;
+  width: 3.25rem;
+  height: 2px;
+  margin-top: var(--space-5);
+  transform-origin: left;
+  background: var(--color-accent);
+  content: "";
+  transition: width var(--transition-slow);
+}
+
+.visible .heading :global(h2)::after {
+  animation: values-title-rule 700ms ease-out 180ms both;
+}
+
+.heading :global(h2 + p) {
+  max-width: 40rem;
+  margin-top: var(--space-5);
+  font-size: clamp(var(--font-size-base), 1.5vw, var(--font-size-lg));
+  line-height: var(--line-height-body);
 }
 
 .values {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 1px;
-  border: 1px solid var(--color-border);
-  background: var(--color-border);
+  gap: clamp(var(--space-4), 2vw, var(--space-6));
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
 .value {
+  --value-accent: var(--color-accent);
+  --pointer-x: 50%;
+  --pointer-y: 45%;
+  --tilt-x: 0deg;
+  --tilt-y: 0deg;
+
   position: relative;
+  display: flex;
   min-width: 0;
-  min-height: 16rem;
-  padding: var(--space-7);
-  background: var(--color-surface);
+  min-height: 19rem;
+  flex-direction: column;
+  padding: clamp(var(--space-5), 2vw, var(--space-7));
+  overflow: hidden;
+  border: 1px solid transparent;
+  border-radius: var(--radius-lg);
+  background:
+    linear-gradient(
+      145deg,
+      var(--color-surface),
+      color-mix(in srgb, var(--color-background) 72%, var(--color-surface))
+    )
+      padding-box,
+    linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--value-accent) 48%, transparent),
+      color-mix(in srgb, var(--color-primary) 10%, transparent) 48%,
+      color-mix(in srgb, var(--value-accent) 24%, transparent)
+    )
+      border-box;
+  background-position:
+    0 0,
+    0 0;
+  background-size:
+    100% 100%,
+    220% 220%;
+  box-shadow: var(--shadow-card);
   transition:
-    border-color var(--transition-standard),
     transform var(--transition-standard),
-    box-shadow var(--transition-standard);
+    box-shadow var(--transition-standard),
+    background-position var(--transition-slow);
 }
 
-.value:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 0.75rem 1.75rem rgb(17 24 32 / 10%);
+.value:nth-child(2) {
+  --value-accent: color-mix(in srgb, var(--color-accent) 68%, var(--color-sand));
+}
+
+.value:nth-child(3) {
+  --value-accent: color-mix(in srgb, var(--color-accent) 72%, var(--color-primary));
+}
+
+.value:nth-child(4) {
+  --value-accent: color-mix(in srgb, var(--color-accent) 54%, var(--color-sand));
+}
+
+.value::after {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  background: radial-gradient(
+    circle at var(--pointer-x) var(--pointer-y),
+    color-mix(in srgb, var(--value-accent) 15%, transparent),
+    transparent 58%
+  );
+  content: "";
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-standard);
+}
+
+.value::before {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  background-image:
+    linear-gradient(
+      color-mix(in srgb, var(--value-accent) 7%, transparent) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      color-mix(in srgb, var(--value-accent) 7%, transparent) 1px,
+      transparent 1px
+    );
+  background-size: 1.75rem 1.75rem;
+  content: "";
+  opacity: 0.38;
+  pointer-events: none;
+  mask-image: linear-gradient(to bottom, black, transparent 66%);
+}
+
+.valueTop,
+.valueContent,
+.valueFooter {
+  position: relative;
+  z-index: 1;
 }
 
 .valueTop {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  color: var(--color-accent);
+  gap: var(--space-3);
 }
 
-.valueTop span {
-  color: var(--color-text-muted);
-  font-size: var(--font-size-xs);
+.iconFrame {
+  display: grid;
+  width: 3.375rem;
+  height: 3.375rem;
+  flex: 0 0 auto;
+  place-items: center;
+  border: 1px solid color-mix(in srgb, var(--value-accent) 32%, transparent);
+  border-radius: var(--radius-md);
+  background: color-mix(in srgb, var(--value-accent) 9%, var(--color-surface));
+  color: var(--value-accent);
+  transition:
+    background-color var(--transition-standard),
+    box-shadow var(--transition-standard),
+    transform var(--transition-standard);
+}
+
+.number {
+  color: color-mix(in srgb, var(--value-accent) 72%, var(--color-text-muted));
+  font-family: var(--font-heading);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
   letter-spacing: var(--letter-spacing-wide);
+  font-variant-numeric: tabular-nums;
+}
+
+.valueContent {
+  flex: 1;
+  padding-top: var(--space-6);
+  text-align: center;
 }
 
 .value h3 {
-  margin-top: var(--space-10);
+  position: relative;
+  width: fit-content;
+  max-width: 100%;
+  min-height: 1.5em;
+  margin-inline: auto;
   color: var(--color-primary);
   font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: -0.02em;
+  line-height: var(--line-height-heading);
+  text-align: center;
+}
+
+.value h3::after {
+  display: block;
+  width: 2.5rem;
+  height: 1px;
+  margin: var(--space-3) auto 0;
+  transform: scaleX(0.72);
+  transform-origin: center;
+  background: color-mix(in srgb, var(--value-accent) 68%, var(--color-border));
+  content: "";
+  transition:
+    transform var(--transition-standard),
+    width var(--transition-standard);
 }
 
 .value p {
-  margin-top: var(--space-3);
+  max-width: 32ch;
+  margin: var(--space-3) auto 0;
   color: var(--color-text-muted);
   font-size: var(--font-size-sm);
+  line-height: var(--line-height-body);
+  text-align: center;
+}
+
+.valueFooter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-5);
+}
+
+.valueFooter > span {
+  width: 2.5rem;
+  height: 1px;
+  background: color-mix(in srgb, var(--value-accent) 54%, var(--color-border));
+  transition: width var(--transition-standard);
 }
 
 .arrow {
-  position: absolute;
-  right: var(--space-6);
-  bottom: var(--space-6);
-  color: var(--color-accent);
+  color: var(--value-accent);
+  transition: transform var(--transition-standard);
+}
+
+.value:hover {
+  z-index: 2;
+  transform:
+    perspective(900px)
+    rotateX(var(--tilt-x))
+    rotateY(var(--tilt-y))
+    translateY(-4px)
+    scale(1.012);
+  background-position:
+    0 0,
+    100% 100%;
+  box-shadow: var(--shadow-header);
+}
+
+.value:hover::after {
+  opacity: 1;
+}
+
+.value:hover .iconFrame {
+  transform: rotate(-5deg) scale(1.06);
+  background: color-mix(in srgb, var(--value-accent) 15%, var(--color-surface));
+  box-shadow: 0 0 1.25rem color-mix(in srgb, var(--value-accent) 18%, transparent);
+}
+
+.value:hover h3::after {
+  width: 3.75rem;
+  transform: scaleX(1);
+}
+
+.value:hover .valueFooter > span {
+  width: 3.5rem;
+}
+
+.value:hover .arrow {
+  transform: translate(2px, -2px);
+}
+
+@keyframes values-pattern-drift {
+  to {
+    background-position: 7rem 7rem;
+  }
+}
+
+@keyframes values-title-rule {
+  from {
+    transform: scaleX(0.35);
+  }
+
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.revealReady:not(.visible) .heading,
+.revealReady:not(.visible) .value {
+  opacity: 0;
+  translate: 0 var(--space-3);
+}
+
+.visible .heading,
+.visible .value {
+  animation: values-reveal var(--duration-content-reveal) ease-out both;
+}
+
+.visible .value:nth-child(1) {
+  animation-delay: 180ms;
+}
+
+.visible .value:nth-child(2) {
+  animation-delay: 260ms;
+}
+
+.visible .value:nth-child(3) {
+  animation-delay: 340ms;
+}
+
+.visible .value:nth-child(4) {
+  animation-delay: 420ms;
+}
+
+@keyframes values-reveal {
+  from {
+    opacity: 0;
+    translate: 0 var(--space-3);
+  }
+
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
 }
 
 @media (max-width: 64rem) {
@@ -66,11 +388,59 @@
 }
 
 @media (max-width: 36rem) {
+  .heading {
+    margin-bottom: var(--space-8);
+  }
+
+  .heading :global(h2) {
+    font-size: clamp(2rem, 10vw, 2.75rem);
+  }
+
   .values {
     grid-template-columns: 1fr;
+    gap: var(--space-4);
   }
 
   .value {
-    min-height: 13rem;
+    min-height: 16.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .revealReady:not(.visible) .heading,
+  .revealReady:not(.visible) .value {
+    opacity: 1;
+    translate: none;
+  }
+
+  .visible .heading,
+  .visible .value {
+    animation: none;
+  }
+
+  .value,
+  .section::after,
+  .value::after,
+  .value::before,
+  .heading :global(h2)::after,
+  .value h3::after,
+  .iconFrame,
+  .valueFooter > span,
+  .arrow {
+    transition: none;
+  }
+
+  .section::after,
+  .visible .heading :global(h2)::after {
+    animation: none;
+  }
+
+  .value:hover {
+    transform: none;
+  }
+
+  .value:hover .iconFrame,
+  .value:hover .arrow {
+    transform: none;
   }
 }

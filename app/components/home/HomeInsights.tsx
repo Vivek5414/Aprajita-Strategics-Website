@@ -32,7 +32,7 @@ export default function HomeInsights({ insights }: HomeInsightsProps) {
         {insights.length > 0 ? (
           <>
             <div className={styles.grid}>
-              {insights.slice(0, 3).map((insight) => (
+              {insights.map((insight) => (
                 <article className={styles.card} key={insight.slug}>
                   {insight.image ? (
                     <Link

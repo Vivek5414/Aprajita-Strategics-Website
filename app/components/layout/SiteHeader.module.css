@@ -10,7 +10,7 @@
 .inner {
   display: flex;
   width: min(100% - 2 * var(--container-gutter), var(--container-wide));
-  min-height: 5.25rem;
+  min-height: 6rem;
   align-items: center;
   justify-content: space-between;
   gap: var(--space-6);
@@ -18,15 +18,40 @@
 }
 
 .logo {
-  display: block;
+  display: grid;
+  width: 5.25rem;
+  height: 5.25rem;
   flex: 0 0 auto;
+  place-items: center;
+  padding: var(--space-1);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: linear-gradient(
+    145deg,
+    var(--color-surface),
+    color-mix(in srgb, var(--color-background) 72%, var(--color-surface))
+  );
+  box-shadow: var(--shadow-header);
   text-decoration: none;
+  transition:
+    transform var(--transition-standard),
+    box-shadow var(--transition-standard);
+}
+
+.logo:hover {
+  transform: scale(1.035);
+  box-shadow: var(--shadow-card);
+}
+
+.logo:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 3px;
 }
 
 .logoImage {
   display: block;
-  width: 4.25rem;
-  height: 4.25rem;
+  width: 100%;
+  height: 100%;
   object-fit: contain;
 }
 
@@ -136,10 +161,16 @@
 @media (max-width: 70rem) {
   .inner {
     gap: var(--space-4);
+    min-height: 5.5rem;
   }
 
   .desktopNav {
     gap: var(--space-3);
+  }
+
+  .logo {
+    width: 4.75rem;
+    height: 4.75rem;
   }
 
   .consultation {
@@ -154,12 +185,12 @@
   }
 
   .inner {
-    min-height: 4.25rem;
+    min-height: 4.75rem;
   }
 
-  .logoImage {
-    width: 3.25rem;
-    height: 3.25rem;
+  .logo {
+    width: 4.125rem;
+    height: 4.125rem;
   }
 
   .menuToggle {
@@ -240,7 +271,8 @@
 
 @media (prefers-reduced-motion: reduce) {
   .navLink:not(.active)::after,
-  .menuToggle span {
+  .menuToggle span,
+  .logo {
     transition: none;
   }
 }

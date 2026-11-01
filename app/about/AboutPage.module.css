@@ -1,55 +1,614 @@
-.story {
+.page {
+  overflow: hidden;
   background: var(--color-background);
 }
 
-.story :global(.prose) {
-  max-width: 62rem;
-  margin-left: auto;
-  padding-left: clamp(var(--space-5), 5vw, var(--space-12));
+.page > :global(section:first-child) {
+  background-color: var(--color-primary);
+  background-image:
+    radial-gradient(
+      ellipse at 82% 72%,
+      color-mix(in srgb, var(--color-accent) 15%, transparent),
+      transparent 42%
+    ),
+    linear-gradient(
+      115deg,
+      var(--color-primary),
+      color-mix(in srgb, var(--color-primary) 88%, var(--color-sand))
+    );
+}
+
+.page > :global(section:first-child) :global(h1) {
+  max-width: 17ch;
+}
+
+.page > :global(section:first-child) :global(h1)::after {
+  display: block;
+  width: 4rem;
+  height: 2px;
+  margin-top: var(--space-6);
+  background: var(--color-accent);
+  content: "";
+}
+
+.story {
+  position: relative;
+  background:
+    linear-gradient(
+      115deg,
+      var(--color-background),
+      color-mix(in srgb, var(--color-surface) 66%, var(--color-background))
+    );
+}
+
+.story::after {
+  position: absolute;
+  right: max(-8rem, calc((100vw - var(--container-wide)) / 2));
+  bottom: -16rem;
+  width: clamp(18rem, 34vw, 30rem);
+  aspect-ratio: 1;
+  border: 1px solid color-mix(in srgb, var(--color-primary) 7%, transparent);
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 2rem color-mix(in srgb, var(--color-primary) 2%, transparent),
+    0 0 0 4rem color-mix(in srgb, var(--color-primary) 1%, transparent);
+  content: "";
+  pointer-events: none;
+}
+
+.storyGrid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  align-items: start;
+  gap: clamp(var(--space-8), 8vw, var(--space-20));
+}
+
+.storyHeading :global(h2) {
+  max-width: 13ch;
+  font-size: clamp(2.125rem, 4vw, 3.25rem);
+}
+
+.storyCopy {
+  padding: var(--space-2) 0 var(--space-2) clamp(var(--space-5), 4vw, var(--space-10));
   border-left: 2px solid var(--color-accent);
-  color: var(--color-text);
+}
+
+.storyCopy :global(.prose) {
+  max-width: 58ch;
+  color: var(--color-text-muted);
+  font-size: clamp(var(--font-size-base), 1.35vw, var(--font-size-lg));
+  line-height: 1.8;
+}
+
+.storyCopy :global(.prose > * + *) {
+  margin-top: var(--space-6);
 }
 
 .expertise {
-  background: var(--color-background-secondary);
+  position: relative;
+  isolation: isolate;
+  background-color: var(--color-background-secondary);
+  background-image:
+    radial-gradient(
+      ellipse at 88% 18%,
+      color-mix(in srgb, var(--color-accent) 9%, transparent),
+      transparent 38%
+    ),
+    linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--color-surface) 30%, transparent),
+      transparent 62%
+    );
+}
+
+.expertise::before,
+.expertise::after {
+  position: absolute;
+  z-index: -1;
+  content: "";
+  pointer-events: none;
+}
+
+.expertise::before {
+  inset: 0;
+  background-image:
+    linear-gradient(
+      to right,
+      color-mix(in srgb, var(--color-primary) 2.5%, transparent) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      color-mix(in srgb, var(--color-primary) 2.5%, transparent) 1px,
+      transparent 1px
+    );
+  background-size: 3rem 3rem;
+  mask-image: linear-gradient(120deg, transparent 10%, black 90%);
+}
+
+.expertise::after {
+  top: -12rem;
+  right: -8rem;
+  width: clamp(20rem, 36vw, 34rem);
+  aspect-ratio: 1;
+  border: 1px solid color-mix(in srgb, var(--color-primary) 8%, transparent);
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 2.5rem color-mix(in srgb, var(--color-primary) 2%, transparent),
+    0 0 0 5rem color-mix(in srgb, var(--color-primary) 1.2%, transparent);
+}
+
+.sectionHeading {
+  max-width: 52rem;
+}
+
+.sectionHeading :global(h2) {
+  max-width: 21ch;
+  font-size: clamp(2.125rem, 4vw, 3.25rem);
+}
+
+.sectionHeading :global(h2)::after {
+  display: block;
+  width: 3.25rem;
+  height: 2px;
+  margin-top: var(--space-5);
+  transform-origin: left;
+  background: var(--color-accent);
+  content: "";
+  transition: width var(--transition-slow);
+}
+
+.revealed.sectionHeading :global(h2)::after {
+  width: 4.5rem;
+}
+
+.expertiseGrid,
+.valuesGrid {
+  display: grid;
+  grid-auto-rows: 1fr;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: stretch;
+  gap: var(--space-5);
+}
+
+.cardReveal {
+  display: flex;
+  min-width: 0;
+}
+
+.card {
+  --pointer-x: 50%;
+  --pointer-y: 30%;
+
+  position: relative;
+  display: flex;
+  width: 100%;
+  min-height: 100%;
+  flex-direction: column;
+  align-items: center;
+  padding: clamp(var(--space-6), 2.6vw, var(--space-8)) clamp(var(--space-5), 2vw, var(--space-7));
+  overflow: hidden;
+  border: 1px solid transparent;
+  border-radius: var(--radius-lg);
+  background:
+    linear-gradient(
+      150deg,
+      color-mix(in srgb, var(--color-surface) 97%, transparent),
+      color-mix(in srgb, var(--color-background) 70%, var(--color-surface))
+    )
+      padding-box,
+    linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--color-accent) 46%, transparent),
+      color-mix(in srgb, var(--color-primary) 10%, transparent) 54%,
+      color-mix(in srgb, var(--color-sand) 76%, transparent)
+    )
+      border-box;
+  box-shadow: var(--shadow-card);
+  text-align: center;
+  transition:
+    transform var(--transition-standard),
+    box-shadow var(--transition-standard),
+    background-position var(--transition-slow);
+  transform-style: preserve-3d;
+}
+
+.card::before {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at var(--pointer-x) var(--pointer-y),
+    color-mix(in srgb, var(--color-accent) 12%, transparent),
+    transparent 64%
+  );
+  content: "";
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-standard);
+}
+
+.card:hover {
+  transform: perspective(900px) rotateX(1deg) translateY(-5px);
+  box-shadow: var(--shadow-header);
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+.cardNumber {
+  position: absolute;
+  top: var(--space-4);
+  right: var(--space-4);
+  color: color-mix(in srgb, var(--color-primary) 42%, transparent);
+  font-family: var(--font-heading);
+  font-size: var(--font-size-xs);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: var(--letter-spacing-wide);
+}
+
+.iconFrame {
+  position: relative;
+  display: grid;
+  width: 4rem;
+  height: 4rem;
+  flex: 0 0 auto;
+  place-items: center;
+  border: 1px solid color-mix(in srgb, var(--color-accent) 42%, var(--color-border));
+  border-radius: var(--radius-md);
+  background: color-mix(in srgb, var(--color-accent) 11%, var(--color-surface));
+  box-shadow: 0 0.5rem 1.5rem color-mix(in srgb, var(--color-primary) 6%, transparent);
+  color: var(--color-primary);
+  transition:
+    transform var(--transition-standard),
+    background-color var(--transition-standard),
+    border-color var(--transition-standard);
+}
+
+.card:hover .iconFrame {
+  transform: rotate(-5deg) scale(1.07);
+  border-color: var(--color-accent);
+  background: color-mix(in srgb, var(--color-accent) 18%, var(--color-surface));
+}
+
+.card h2 {
+  position: relative;
+  margin-top: var(--space-5);
+  font-size: clamp(var(--font-size-lg), 1.6vw, var(--font-size-2xl));
+  letter-spacing: -0.025em;
+  line-height: var(--line-height-heading);
+}
+
+.card h2::after {
+  display: block;
+  width: 2.25rem;
+  height: 1px;
+  margin: var(--space-3) auto 0;
+  background: color-mix(in srgb, var(--color-accent) 70%, var(--color-border));
+  content: "";
+  transition: width var(--transition-standard);
+}
+
+.card:hover h2::after {
+  width: 3.5rem;
+}
+
+.card p {
+  position: relative;
+  flex: 1;
+  margin-top: var(--space-4);
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+  line-height: 1.75;
+}
+
+.cardRule {
+  width: 2rem;
+  height: 1px;
+  flex: 0 0 auto;
+  margin-top: var(--space-5);
+  background: color-mix(in srgb, var(--color-accent) 58%, var(--color-border));
+  transition: width var(--transition-standard);
+}
+
+.card:hover .cardRule {
+  width: 3.5rem;
 }
 
 .purpose {
   position: relative;
+  isolation: isolate;
   overflow: hidden;
-  background: var(--color-primary);
+  background:
+    radial-gradient(
+      ellipse at 8% 82%,
+      color-mix(in srgb, var(--color-accent) 8%, transparent),
+      transparent 40%
+    ),
+    var(--color-background);
 }
 
 .purpose::after {
   position: absolute;
-  top: -12rem;
-  right: max(4vw, calc((100vw - var(--container-wide)) / 2));
-  width: 23rem;
+  z-index: -1;
+  top: -14rem;
+  right: max(-6rem, calc((100vw - var(--container-wide)) / 2));
+  width: clamp(20rem, 34vw, 32rem);
   aspect-ratio: 1;
-  border: 1px solid var(--color-border-on-dark);
+  border: 1px solid color-mix(in srgb, var(--color-primary) 7%, transparent);
   border-radius: 50%;
+  box-shadow:
+    0 0 0 2.5rem color-mix(in srgb, var(--color-primary) 1.6%, transparent),
+    0 0 0 5rem color-mix(in srgb, var(--color-primary) 1%, transparent);
   content: "";
+  pointer-events: none;
 }
 
-.purpose > :global(.container) {
-  position: relative;
-  z-index: 1;
+.purposeGrid {
+  display: grid;
+  grid-auto-rows: 1fr;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
+  gap: var(--space-6);
 }
 
-.purpose :global(.content-grid) {
-  position: relative;
+.purposeCard {
+  align-items: flex-start;
+  min-height: 100%;
+  padding: clamp(var(--space-7), 4vw, var(--space-10));
+  text-align: left;
+}
+
+.purposeCard .iconFrame {
+  width: 4.5rem;
+  height: 4.5rem;
+  border-radius: 50%;
+}
+
+.purposeCard h2::after {
+  margin-inline: 0;
+}
+
+.purposeCard p {
+  max-width: 58ch;
+  font-size: var(--font-size-base);
 }
 
 .values {
-  background: var(--color-sand);
+  position: relative;
+  background:
+    linear-gradient(
+      145deg,
+      color-mix(in srgb, var(--color-sand) 56%, var(--color-background)),
+      var(--color-background-secondary)
+    );
+}
+
+.values::before {
+  position: absolute;
+  top: 3rem;
+  left: max(-10rem, calc((100vw - var(--container-wide)) / 2));
+  width: clamp(16rem, 28vw, 25rem);
+  aspect-ratio: 1;
+  border: 1px solid color-mix(in srgb, var(--color-accent) 18%, transparent);
+  border-radius: 50%;
+  content: "";
+  pointer-events: none;
+}
+
+.valuesGrid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--space-4);
+}
+
+.valuesGrid .card {
+  padding-inline: var(--space-5);
+}
+
+.valuesGrid .iconFrame {
+  width: 3.75rem;
+  height: 3.75rem;
+}
+
+.valuesGrid .card h2 {
+  font-size: clamp(var(--font-size-base), 1.5vw, var(--font-size-xl));
 }
 
 .approach {
-  background: var(--color-primary);
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(
+      ellipse at 92% 18%,
+      color-mix(in srgb, var(--color-accent) 10%, transparent),
+      transparent 36%
+    ),
+    color-mix(in srgb, var(--color-background-secondary) 74%, var(--color-surface));
+}
+
+.approach::after {
+  position: absolute;
+  top: -12rem;
+  right: max(-7rem, calc((100vw - var(--container-wide)) / 2));
+  width: clamp(20rem, 38vw, 36rem);
+  aspect-ratio: 1;
+  border: 1px solid color-mix(in srgb, var(--color-primary) 7%, transparent);
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 2.5rem color-mix(in srgb, var(--color-primary) 1.5%, transparent),
+    0 0 0 5rem color-mix(in srgb, var(--color-primary) 1%, transparent);
+  content: "";
+  pointer-events: none;
+}
+
+.approachPanel {
+  position: relative;
+  z-index: 1;
+  max-width: 58rem;
+  padding: clamp(var(--space-7), 5vw, var(--space-12));
+  border: 1px solid color-mix(in srgb, var(--color-primary) 10%, var(--color-border));
+  border-radius: var(--radius-lg);
+  background: color-mix(in srgb, var(--color-surface) 76%, transparent);
+  box-shadow: var(--shadow-card);
+}
+
+.approachIcon {
+  margin-bottom: var(--space-5);
+  color: var(--color-primary);
+}
+
+.approachPanel :global(.heading) {
+  margin-bottom: 0;
+}
+
+.approachPanel :global(h2) {
+  max-width: 20ch;
+}
+
+.approachPanel :global(.description) {
+  max-width: 52ch;
+}
+
+.page > :global(section:last-child) {
+  background:
+    linear-gradient(
+      115deg,
+      color-mix(in srgb, var(--color-background) 88%, var(--color-surface)),
+      var(--color-background-secondary)
+    );
+}
+
+.page > :global(section:last-child)::after {
+  border-color: color-mix(in srgb, var(--color-accent) 20%, transparent);
+}
+
+.reveal {
+  opacity: 1;
+  translate: 0 0;
+  transition:
+    opacity var(--duration-content-reveal) ease,
+    translate var(--duration-content-reveal) cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.revealReady:not(.revealed) {
+  opacity: 0;
+  translate: 0 var(--space-5);
+}
+
+.expertiseGrid > .cardReveal:nth-child(2),
+.valuesGrid > .cardReveal:nth-child(2) {
+  transition-delay: 80ms;
+}
+
+.expertiseGrid > .cardReveal:nth-child(3),
+.valuesGrid > .cardReveal:nth-child(3) {
+  transition-delay: 160ms;
+}
+
+.expertiseGrid > .cardReveal:nth-child(4),
+.valuesGrid > .cardReveal:nth-child(4) {
+  transition-delay: 240ms;
+}
+
+.expertiseGrid > .cardReveal:nth-child(5) {
+  transition-delay: 320ms;
+}
+
+.expertiseGrid > .cardReveal:nth-child(6) {
+  transition-delay: 400ms;
+}
+
+.purposeGrid > .cardReveal:nth-child(2) {
+  transition-delay: 120ms;
+}
+
+@media (max-width: 64rem) {
+  .expertiseGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .valuesGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .valuesGrid .card {
+    padding-inline: clamp(var(--space-5), 3vw, var(--space-7));
+  }
 }
 
 @media (max-width: 48rem) {
-  .story :global(.prose) {
-    margin-left: 0;
+  .storyGrid {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+
+  .storyHeading :global(h2) {
+    max-width: 18ch;
+  }
+
+  .storyCopy {
+    margin-left: var(--space-2);
+  }
+}
+
+@media (max-width: 36rem) {
+  .page > :global(section:first-child) :global(h1) {
+    max-width: 13ch;
+  }
+
+  .expertiseGrid,
+  .valuesGrid,
+  .purposeGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .expertiseGrid,
+  .valuesGrid {
+    gap: var(--space-4);
+  }
+
+  .purposeGrid {
+    gap: var(--space-5);
+  }
+
+  .card {
+    min-height: 0;
+    padding: var(--space-6) var(--space-5);
+  }
+
+  .purposeCard {
+    padding: var(--space-6) var(--space-5);
+  }
+
+  .sectionHeading :global(h2) {
+    font-size: clamp(2rem, 9vw, 2.75rem);
+  }
+
+  .approachPanel {
+    padding: var(--space-6);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .sectionHeading :global(h2)::after,
+  .card,
+  .card::before,
+  .iconFrame,
+  .card h2::after,
+  .cardRule {
+    transition: none;
+  }
+
+  .revealReady:not(.revealed) {
+    opacity: 1;
+    translate: none;
+  }
+
+  .card:hover,
+  .card:hover .iconFrame {
+    transform: none;
   }
 }
