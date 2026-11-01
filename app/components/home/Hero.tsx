@@ -13,7 +13,7 @@ export default function Hero() {
     >
       <Image
         className={styles.image}
-        src="/images/engineering-hero.jpg"
+        src="/images/engineering-hero.webp"
         alt="Contemporary glass office towers viewed from below"
         fill
         priority

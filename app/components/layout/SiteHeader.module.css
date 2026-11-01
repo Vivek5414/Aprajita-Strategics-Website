@@ -19,8 +19,8 @@
 
 .logo {
   display: grid;
-  width: 5.25rem;
-  height: 5.25rem;
+  width: 12.5rem;
+  height: 4.25rem;
   flex: 0 0 auto;
   place-items: center;
   padding: var(--space-1);
@@ -169,8 +169,8 @@
   }
 
   .logo {
-    width: 4.75rem;
-    height: 4.75rem;
+    width: 10.5rem;
+    height: 3.75rem;
   }
 
   .consultation {
@@ -189,8 +189,8 @@
   }
 
   .logo {
-    width: 4.125rem;
-    height: 4.125rem;
+    width: 10rem;
+    height: 3.5rem;
   }
 
   .menuToggle {
@@ -266,6 +266,13 @@
     justify-content: space-between;
     margin-top: var(--space-3);
     font-size: var(--font-size-sm);
+  }
+}
+
+@media (max-width: 36rem) {
+  .logo {
+    width: 9rem;
+    height: 3.125rem;
   }
 }
 

@@ -3,6 +3,75 @@
   gap: var(--space-5);
 }
 
+.contactForm {
+  gap: var(--space-6);
+}
+
+.contactForm .fields {
+  column-gap: var(--space-5);
+  row-gap: var(--space-5);
+}
+
+.contactForm .field {
+  gap: var(--space-2);
+}
+
+.contactForm .field label {
+  letter-spacing: 0.01em;
+}
+
+.contactForm .field input,
+.contactForm .field select,
+.contactForm .field textarea {
+  min-height: 3.125rem;
+  border-color: color-mix(in srgb, var(--color-primary) 16%, var(--color-border));
+  border-radius: var(--radius-md);
+  background: color-mix(in srgb, var(--color-surface) 92%, var(--color-background));
+  transition:
+    border-color var(--transition-standard),
+    box-shadow var(--transition-standard),
+    background-color var(--transition-standard);
+}
+
+.contactForm .field textarea {
+  min-height: 9rem;
+  line-height: var(--line-height-body);
+}
+
+.contactForm .field input:focus-visible,
+.contactForm .field select:focus-visible,
+.contactForm .field textarea:focus-visible {
+  border-color: var(--color-accent);
+  outline: 2px solid var(--color-accent);
+  outline-offset: 1px;
+  background: var(--color-surface);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-accent) 16%, transparent);
+}
+
+.contactForm .submit {
+  min-height: var(--control-height-large);
+  justify-self: stretch;
+  justify-content: center;
+  padding-inline: var(--space-6);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-header);
+  transition:
+    transform var(--transition-standard),
+    box-shadow var(--transition-standard);
+}
+
+.contactForm .submit:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-card);
+}
+
+.contactForm .status {
+  padding: var(--space-3) var(--space-4);
+  border-left: 2px solid var(--color-accent);
+  background: color-mix(in srgb, var(--color-accent) 8%, var(--color-surface));
+  line-height: 1.6;
+}
+
 .quickForm {
   gap: var(--space-5);
 }
@@ -177,8 +246,13 @@
 @media (prefers-reduced-motion: reduce) {
   .field input,
   .field select,
-  .field textarea {
+  .field textarea,
+  .contactForm .submit {
     transition: none;
+  }
+
+  .contactForm .submit:hover:not(:disabled) {
+    transform: none;
   }
 }
 

@@ -45,10 +45,11 @@ export default function SiteFooter() {
             >
               <Image
                 className={styles.logoImage}
-                src="/images/aprajita-logo.png"
+                src="/images/aprajita-logo-horizontal.png"
                 alt="APRAJITA STRATEGICS – Engineering and Project Consultancy"
-                width={1254}
-                height={1254}
+                width={2172}
+                height={724}
+                sizes="13rem"
               />
             </Link>
             <h2>{contactDetails.companyName}</h2>

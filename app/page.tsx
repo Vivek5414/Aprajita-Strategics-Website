@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/images/engineering-hero.jpg",
+        url: "/images/engineering-hero.webp",
         alt: "Contemporary glass office towers viewed from below",
       },
     ],

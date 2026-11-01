@@ -158,7 +158,7 @@ export const insights: Insight[] = [
     ],
     authorBio,
     image: {
-      src: "/images/blogs/construction-project-management.jpg",
+      src: "/images/blogs/construction-project-management.webp",
       alt: "Project Management Best Practices in Construction",
       originalUrl:
         "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80",
@@ -203,7 +203,7 @@ export const insights: Insight[] = [
     ],
     authorBio,
     image: {
-      src: "/images/blogs/construction-technology.jpg",
+      src: "/images/blogs/construction-technology.webp",
       alt: "The Role of Technology in Modern Construction",
       originalUrl:
         "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80",

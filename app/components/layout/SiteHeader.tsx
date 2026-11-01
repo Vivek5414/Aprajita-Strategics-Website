@@ -71,11 +71,12 @@ export default function SiteHeader() {
         >
           <Image
             className={styles.logoImage}
-            src="/images/aprajita-logo.png"
+            src="/images/aprajita-logo-horizontal.png"
             alt="APRAJITA STRATEGICS – Engineering and Project Consultancy"
-            width={1254}
-            height={1254}
+            width={2172}
+            height={724}
             priority
+            sizes="(max-width: 36rem) 9rem, (max-width: 60rem) 10rem, (max-width: 70rem) 10.5rem, 12.5rem"
           />
         </Link>
 

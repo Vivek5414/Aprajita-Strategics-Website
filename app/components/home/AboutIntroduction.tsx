@@ -13,7 +13,7 @@ export default function AboutIntroduction() {
         <figure className={styles.imageFrame}>
           <Image
             className={styles.image}
-            src="/images/home-building-infographic.png"
+            src="/images/home-building-infographic.webp"
             alt="Building infographic showing project planning, engineering and project delivery levels"
             fill
             sizes="(max-width: 48rem) 100vw, 50vw"

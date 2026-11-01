@@ -276,7 +276,7 @@ function ContactForm() {
 
   return (
     <form
-      className={styles.form}
+      className={`${styles.form} ${styles.contactForm}`}
       onSubmit={handleSubmit}
       onInvalidCapture={() => setFormState("invalid")}
       onInput={() => {
