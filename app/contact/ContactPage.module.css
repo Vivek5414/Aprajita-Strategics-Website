@@ -111,9 +111,9 @@
   justify-content: center;
   gap: var(--space-3);
   padding: var(--space-3) var(--space-6);
-  border: 1px solid var(--color-primary);
+  border: 1px solid #87ceeb;
   border-radius: var(--radius-sm);
-  background: var(--color-brand-orange);
+  background: #87ceeb;
   color: var(--color-surface) !important;
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-semibold);
@@ -126,8 +126,8 @@
 
 .callButton:hover {
   transform: translateY(-1px);
-  border-color: var(--color-secondary);
-  background: var(--color-brand-orange-hover);
+  border-color: #5dade2;
+  background: #5dade2;
 }
 
 .detail .whatsAppButton {

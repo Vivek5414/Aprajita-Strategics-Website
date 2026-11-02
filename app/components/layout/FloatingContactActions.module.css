@@ -36,13 +36,13 @@
 }
 
 .call {
-  border-color: var(--color-primary);
-  background: var(--color-brand-orange);
+  border-color: #87ceeb;
+  background: #87ceeb;
 }
 
 .call:hover {
-  border-color: var(--color-secondary);
-  background: var(--color-brand-orange-hover);
+  border-color: #5dade2;
+  background: #5dade2;
 }
 
 .whatsApp {
