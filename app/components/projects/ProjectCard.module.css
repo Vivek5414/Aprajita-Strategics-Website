@@ -54,7 +54,7 @@
 .image:hover .imageArrow,
 .image:focus-visible .imageArrow {
   transform: translate(2px, -2px);
-  background: var(--color-primary);
+  background: var(--color-brand-orange);
   color: var(--color-surface);
 }
 
@@ -141,7 +141,7 @@
   margin-top: var(--space-5);
   padding-inline: var(--space-4);
   border-radius: var(--radius-sm);
-  background: var(--color-primary);
+  background: var(--color-brand-orange);
   color: var(--color-surface);
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-semibold);

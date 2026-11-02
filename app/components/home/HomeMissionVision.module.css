@@ -1,5 +1,5 @@
 .section {
-  background: var(--color-primary);
+  background: var(--color-brand-orange);
   color: var(--color-surface);
   position: relative;
   overflow: hidden;
@@ -54,7 +54,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  color: var(--color-accent);
+  color: var(--color-surface);
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-semibold);
   letter-spacing: var(--letter-spacing-wide);

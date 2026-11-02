@@ -97,7 +97,7 @@
 }
 
 .steps::before {
-  background: color-mix(in srgb, var(--color-primary) 18%, var(--color-sand));
+  background: color-mix(in srgb, var(--color-brand-orange) 18%, var(--color-sand));
 }
 
 .steps::after {
@@ -136,11 +136,11 @@
   place-items: center;
   border: 1px solid color-mix(in srgb, var(--color-accent) 65%, var(--color-border));
   border-radius: 50%;
-  background: var(--color-primary);
+  background: var(--color-brand-orange);
   box-shadow:
     0 0 0 0.35rem var(--color-background-secondary),
     var(--shadow-card);
-  color: var(--color-accent);
+  color: var(--color-surface);
   font-family: var(--font-heading);
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-semibold);
@@ -304,7 +304,7 @@
 
 .steps li:hover .number {
   transform: scale(1.08);
-  background: color-mix(in srgb, var(--color-primary) 88%, var(--color-accent));
+  background: color-mix(in srgb, var(--color-brand-orange) 88%, var(--color-accent));
   box-shadow:
     0 0 0 0.35rem var(--color-background-secondary),
     var(--shadow-header);
@@ -465,7 +465,7 @@
   }
 
   .steps li::before {
-    background: color-mix(in srgb, var(--color-primary) 18%, var(--color-sand));
+    background: color-mix(in srgb, var(--color-brand-orange) 18%, var(--color-sand));
   }
 
   .steps li::after {

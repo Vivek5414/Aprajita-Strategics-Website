@@ -1,5 +1,21 @@
 .section {
-  background: var(--color-primary);
+  --home-services-background: var(--color-brand-orange);
+  --home-services-card-background: var(--color-background);
+  --home-services-card-border: var(--color-border);
+  --home-services-card-border-hover: color-mix(in srgb, var(--color-graphite) 35%, transparent);
+  --home-services-card-shadow: var(--shadow-card);
+  --home-services-card-shadow-hover: var(--shadow-card-hover);
+  --home-services-card-text: var(--color-text-primary);
+  --home-services-card-link: var(--color-text-primary);
+  --home-services-card-link-hover: var(--color-text-primary);
+  --home-services-card-action-background: var(--color-brand-orange);
+  --home-services-card-action-hover: var(--color-brand-orange-hover);
+  --home-services-card-action-hover-text: var(--color-surface);
+
+  background: var(--home-services-background);
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, var(--color-surface) 18%, transparent),
+    inset 0 -1px 0 color-mix(in srgb, var(--color-surface) 18%, transparent);
 }
 
 .intro {
@@ -11,8 +27,16 @@
   margin-bottom: var(--space-5);
 }
 
+.intro > div > p:first-child {
+  color: var(--color-surface);
+}
+
+.intro > div > h2 {
+  color: var(--color-surface);
+}
+
 .intro > p {
-  color: color-mix(in srgb, var(--color-ivory) 78%, transparent);
+  color: var(--color-surface);
   font-size: var(--font-size-base);
 }
 
@@ -46,7 +70,7 @@
 .closingCopy span {
   display: block;
   margin-top: var(--space-1);
-  color: color-mix(in srgb, var(--color-ivory) 72%, transparent);
+  color: var(--color-surface);
   font-size: var(--font-size-sm);
 }
 
@@ -74,7 +98,7 @@
 }
 
 .servicesLink:hover {
-  color: var(--color-accent);
+  color: var(--color-surface);
 }
 
 @supports (animation-timeline: view()) {

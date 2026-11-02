@@ -17,6 +17,7 @@ export default function Hero() {
         alt="Contemporary glass office towers viewed from below"
         fill
         priority
+        unoptimized
         sizes="100vw"
       />
       <div className={styles.overlay} aria-hidden="true" />

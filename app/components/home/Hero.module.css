@@ -5,7 +5,7 @@
   align-items: center;
   overflow: hidden;
   isolation: isolate;
-  background: var(--color-primary);
+  background: #111820;
 }
 
 .image {
@@ -22,14 +22,9 @@
   background:
     linear-gradient(
       90deg,
-      var(--color-overlay-strong) 0%,
-      color-mix(in srgb, var(--color-overlay-strong) 82%, transparent) 42%,
-      color-mix(in srgb, var(--color-overlay-medium) 72%, transparent) 100%
-    ),
-    linear-gradient(
-      0deg,
-      color-mix(in srgb, var(--color-primary) 54%, transparent) 0%,
-      transparent 42%
+      rgb(17 24 32 / 78%) 0%,
+      rgb(17 24 32 / 48%) 55%,
+      rgb(17 24 32 / 18%) 100%
     );
 }
 
@@ -49,7 +44,7 @@
   align-items: center;
   gap: var(--space-3);
   margin-bottom: var(--space-6);
-  color: var(--color-accent);
+  color: #ffffff;
   font-size: var(--font-size-xs);
   font-weight: var(--font-weight-semibold);
   letter-spacing: var(--letter-spacing-eyebrow-wide);
@@ -66,7 +61,7 @@
 
 .title {
   max-width: 62rem;
-  color: var(--color-surface);
+  color: #ffffff;
   font-size: var(--font-size-hero);
   font-weight: var(--font-weight-medium);
   letter-spacing: -0.055em;
@@ -74,14 +69,14 @@
 }
 
 .title span {
-  color: var(--color-surface);
+  color: #ffffff;
   font-weight: var(--font-weight-semibold);
 }
 
 .description {
   max-width: 42rem;
   margin-top: var(--space-8);
-  color: color-mix(in srgb, var(--color-surface) 88%, transparent);
+  color: #fdf0ea;
   font-size: var(--font-size-lead);
   line-height: 1.75;
 }
@@ -119,27 +114,27 @@
 }
 
 .primaryAction {
-  background: var(--color-accent);
-  color: var(--color-primary);
+  background: #ff6000;
+  color: #ffffff;
 }
 
 .primaryAction:hover {
   transform: translateY(-2px);
-  background: var(--color-surface);
-  color: var(--color-primary);
+  background: #e65300;
+  color: #ffffff;
 }
 
 .secondaryAction {
-  border-color: color-mix(in srgb, var(--color-surface) 68%, transparent);
+  border-color: #ffffff;
   background: transparent;
-  color: var(--color-surface);
+  color: #ffffff;
 }
 
 .secondaryAction:hover {
   transform: translateY(-2px);
-  border-color: var(--color-surface);
-  background: color-mix(in srgb, var(--color-surface) 10%, transparent);
-  color: var(--color-surface);
+  border-color: #ffffff;
+  background: rgb(255 255 255 / 10%);
+  color: #ffffff;
 }
 
 .actionArrow {
@@ -160,7 +155,7 @@
   display: flex;
   align-items: center;
   gap: var(--space-3);
-  color: color-mix(in srgb, var(--color-surface) 82%, transparent);
+  color: #fdf0ea;
   font-size: var(--font-size-xs);
   letter-spacing: 0.04em;
 }
@@ -168,7 +163,7 @@
 .imageLabelRule {
   width: 2rem;
   height: 1px;
-  background: var(--color-accent);
+  background: #ff6000;
 }
 
 @keyframes content-reveal {
@@ -204,13 +199,9 @@
     background:
       linear-gradient(
         90deg,
-        color-mix(in srgb, var(--color-primary) 88%, transparent) 0%,
-        color-mix(in srgb, var(--color-primary) 74%, transparent) 100%
-      ),
-      linear-gradient(
-        0deg,
-        color-mix(in srgb, var(--color-primary) 62%, transparent) 0%,
-        transparent 60%
+        rgb(17 24 32 / 78%) 0%,
+        rgb(17 24 32 / 48%) 55%,
+        rgb(17 24 32 / 18%) 100%
       );
   }
 

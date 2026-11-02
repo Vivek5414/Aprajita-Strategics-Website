@@ -23,10 +23,12 @@ const legacyBlogRoute = readFileSync("app/blog/[id]/page.tsx", "utf8");
 
 test("brand colors and typography are centralized", () => {
   for (const token of [
-    "--color-graphite: #111820",
-    "--color-ivory: #f4f1ea",
-    "--color-sand: #d8d0c2",
-    "--color-signal: #f5a623",
+    "--color-graphite: #252525",
+    "--color-ivory: #FDF0EA",
+    "--color-sand: #F9D7C6",
+    "--color-brand-orange: #FF6000",
+    "--color-brand-orange-hover: #E65300",
+    "--color-signal: var(--color-brand-orange)",
     "--color-soft-grey: #a8b0b8",
     "--color-primary: var(--color-graphite)",
     "--color-accent: var(--color-signal)",

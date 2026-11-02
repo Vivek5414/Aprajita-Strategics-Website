@@ -1,6 +1,6 @@
 .section {
   padding-block: clamp(var(--space-10), 6vw, var(--space-16));
-  background: var(--color-primary);
+  background: var(--color-brand-orange);
   color: var(--color-surface);
 }
 
@@ -16,7 +16,7 @@
 }
 
 .eyebrow {
-  color: var(--color-focus);
+  color: var(--color-surface);
   font-size: var(--font-size-xs);
   font-weight: var(--font-weight-semibold);
   letter-spacing: var(--letter-spacing-eyebrow);

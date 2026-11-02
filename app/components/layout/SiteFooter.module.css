@@ -1,7 +1,7 @@
 .footer {
   padding: var(--space-16) var(--container-gutter) 0;
   border-top: 3px solid var(--color-accent);
-  background: var(--color-primary);
+  background: var(--color-brand-orange);
   color: var(--color-surface);
 }
 
@@ -75,7 +75,7 @@
 
 .tagline {
   margin-top: var(--space-3);
-  color: var(--color-accent);
+  color: var(--color-surface);
   font-family: var(--font-heading);
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-semibold);
@@ -115,7 +115,7 @@
 
 .serviceColumns a:hover,
 .quickLinks a:hover {
-  color: var(--color-accent);
+  color: var(--color-surface);
   text-decoration: underline;
   text-underline-offset: 0.2em;
 }
@@ -125,7 +125,7 @@
   align-items: center;
   gap: var(--space-2);
   margin-top: var(--space-5);
-  color: var(--color-accent);
+  color: var(--color-surface);
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-semibold);
   text-decoration: none;
@@ -153,7 +153,7 @@
 
 .contactItem > svg {
   margin-top: 0.1rem;
-  color: var(--color-accent);
+  color: var(--color-surface);
 }
 
 .addressLine {
@@ -167,7 +167,7 @@
 }
 
 .contactItem a:hover {
-  color: var(--color-accent);
+  color: var(--color-surface);
   text-decoration: underline;
 }
 
@@ -190,9 +190,9 @@
   justify-content: center;
   gap: var(--space-2);
   padding: var(--space-2) var(--space-4);
-  border: 1px solid var(--color-accent);
+  border: 1px solid var(--color-surface);
   border-radius: var(--radius-sm);
-  color: var(--color-accent);
+  color: var(--color-surface);
   font-size: var(--font-size-xs);
   font-weight: var(--font-weight-semibold);
   text-decoration: none;
@@ -220,11 +220,11 @@
 }
 
 .backToTop:hover {
-  color: var(--color-accent);
+  color: var(--color-surface);
 }
 
 .adminLink:hover {
-  background: var(--color-accent);
+  background: var(--color-brand-orange-hover);
   color: var(--color-primary);
 }
 

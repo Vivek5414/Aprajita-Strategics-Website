@@ -2,11 +2,12 @@
   display: flex;
   min-width: 0;
   flex-direction: column;
-  border: 1px solid var(--color-border);
+  border: 1px solid
+    var(--home-services-card-border, var(--color-border));
   border-radius: var(--radius-lg);
   overflow: hidden;
-  background: var(--color-surface);
-  box-shadow: var(--shadow-card);
+  background: var(--home-services-card-background, var(--color-surface));
+  box-shadow: var(--home-services-card-shadow, var(--shadow-card));
   transition:
     border-color var(--transition-standard),
     box-shadow var(--transition-standard),
@@ -15,8 +16,14 @@
 
 .card:hover {
   transform: translateY(-2px);
-  border-color: var(--color-accent);
-  box-shadow: var(--shadow-card);
+  border-color: var(
+    --home-services-card-border-hover,
+    var(--color-accent)
+  );
+  box-shadow: var(
+    --home-services-card-shadow-hover,
+    var(--shadow-card)
+  );
 }
 
 .imageFrame {
@@ -45,7 +52,7 @@
   place-items: center;
   border-radius: var(--radius-sm);
   background: var(--color-accent);
-  color: var(--color-primary);
+  color: var(--color-surface);
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-semibold);
 }
@@ -59,6 +66,7 @@
 }
 
 .content h2 {
+  color: var(--home-services-card-text, var(--color-text-primary));
   font-size: var(--font-size-xl);
   line-height: var(--line-height-heading);
   letter-spacing: -0.02em;
@@ -66,7 +74,10 @@
 
 .content > p {
   margin-top: var(--space-3);
-  color: var(--color-text-muted);
+  color: var(
+    --home-services-card-text,
+    var(--color-text-muted)
+  );
   font-size: var(--font-size-sm);
   line-height: var(--line-height-body);
 }
@@ -95,14 +106,20 @@
 }
 
 .detailsLink {
-  color: var(--color-secondary);
+  color: var(
+    --home-services-card-link,
+    var(--color-secondary)
+  );
   transition:
     color var(--transition-fast),
     gap var(--transition-fast);
 }
 
 .detailsLink:hover {
-  color: var(--color-focus);
+  color: var(
+    --home-services-card-link-hover,
+    var(--color-focus)
+  );
   gap: var(--space-3);
 }
 
@@ -116,10 +133,14 @@
 
 .enquiryButton {
   padding: var(--space-2) var(--space-3);
-  border: 1px solid var(--color-primary);
+  border: 1px solid
+    var(--home-services-card-action-background, var(--color-primary));
   border-radius: var(--radius-md);
-  background: var(--color-background);
-  color: var(--color-primary);
+  background: var(
+    --home-services-card-action-background,
+    var(--color-background)
+  );
+  color: var(--home-services-card-text, var(--color-primary));
   cursor: pointer;
   font-family: var(--font-body);
   transition:
@@ -129,9 +150,18 @@
 }
 
 .enquiryButton:hover {
-  border-color: var(--color-accent);
-  background: var(--color-accent);
-  color: var(--color-primary);
+  border-color: var(
+    --home-services-card-action-hover,
+    var(--color-accent)
+  );
+  background: var(
+    --home-services-card-action-hover,
+    var(--color-accent)
+  );
+  color: var(
+    --home-services-card-action-hover-text,
+    var(--color-primary)
+  );
 }
 
 @media (max-width: 36rem) {

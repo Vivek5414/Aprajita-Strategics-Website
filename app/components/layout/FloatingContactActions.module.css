@@ -37,12 +37,12 @@
 
 .call {
   border-color: var(--color-primary);
-  background: var(--color-primary);
+  background: var(--color-brand-orange);
 }
 
 .call:hover {
   border-color: var(--color-secondary);
-  background: var(--color-secondary);
+  background: var(--color-brand-orange-hover);
 }
 
 .whatsApp {

@@ -61,8 +61,8 @@
   height: 2.75rem;
   place-items: center;
   border-radius: var(--radius-sm);
-  background: var(--color-primary);
-  color: var(--color-accent);
+  background: var(--color-background-secondary);
+  color: var(--color-brand-orange-text);
 }
 
 .detail h3 {
@@ -113,7 +113,7 @@
   padding: var(--space-3) var(--space-6);
   border: 1px solid var(--color-primary);
   border-radius: var(--radius-sm);
-  background: var(--color-primary);
+  background: var(--color-brand-orange);
   color: var(--color-surface) !important;
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-semibold);
@@ -127,7 +127,7 @@
 .callButton:hover {
   transform: translateY(-1px);
   border-color: var(--color-secondary);
-  background: var(--color-secondary);
+  background: var(--color-brand-orange-hover);
 }
 
 .detail .whatsAppButton {
@@ -324,7 +324,7 @@
 }
 
 .page > :global(section:first-child) {
-  background-color: var(--color-primary);
+  background-color: var(--color-brand-orange);
   background-image:
     radial-gradient(
       ellipse at 82% 72%,
@@ -333,8 +333,8 @@
     ),
     linear-gradient(
       115deg,
-      var(--color-primary),
-      color-mix(in srgb, var(--color-primary) 88%, var(--color-sand))
+      var(--color-brand-orange),
+      color-mix(in srgb, var(--color-brand-orange) 88%, var(--color-sand))
     );
 }
 

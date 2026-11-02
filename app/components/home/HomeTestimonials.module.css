@@ -104,8 +104,8 @@
 .control:hover:not(:disabled) {
   transform: translateY(-2px);
   border-color: var(--color-accent);
-  background: var(--color-primary);
-  color: var(--color-accent);
+  background: var(--color-brand-orange);
+  color: var(--color-surface);
 }
 
 .control:focus-visible,
@@ -366,7 +366,7 @@
   width: 0.5rem;
   height: 0.5rem;
   border-radius: var(--radius-pill);
-  background: color-mix(in srgb, var(--color-primary) 30%, var(--color-sand));
+  background: color-mix(in srgb, var(--color-brand-orange) 30%, var(--color-sand));
   content: "";
   transition:
     width var(--transition-standard),

@@ -1,7 +1,7 @@
 .intro {
   position: relative;
   overflow: hidden;
-  background: var(--color-primary);
+  background: var(--color-brand-orange);
   color: var(--color-surface);
 }
 
@@ -44,7 +44,7 @@
   align-items: center;
   gap: var(--space-3);
   margin-bottom: var(--space-6);
-  color: var(--color-accent);
+  color: var(--color-surface);
   font-size: var(--font-size-xs);
   font-weight: var(--font-weight-semibold);
   letter-spacing: var(--letter-spacing-eyebrow);

@@ -1,6 +1,6 @@
 .section {
   padding-block: clamp(var(--space-8), 5vw, var(--space-12));
-  background: var(--color-primary);
+  background: var(--color-brand-orange);
 }
 
 .grid {
@@ -21,13 +21,13 @@
   border: 1px solid var(--color-border-on-dark);
   border-bottom: 3px solid var(--color-accent);
   border-radius: var(--radius-lg);
-  background: color-mix(in srgb, var(--color-primary) 88%, var(--color-surface));
+  background: var(--color-surface);
   box-shadow: var(--shadow-card);
   text-align: center;
 }
 
 .value {
-  color: var(--color-accent);
+  color: var(--color-brand-orange-text);
   font-family: var(--font-heading);
   font-size: clamp(2.5rem, 4vw, 3.5rem);
   font-weight: var(--font-weight-bold);
@@ -35,7 +35,7 @@
 }
 
 .label {
-  color: var(--color-surface);
+  color: var(--color-text-primary);
   font-size: var(--font-size-base);
   font-weight: var(--font-weight-medium);
   line-height: var(--line-height-heading);

@@ -32,7 +32,7 @@
 }
 
 .approach {
-  background: var(--color-primary);
+  background: var(--color-brand-orange);
 }
 
 .principles {
@@ -49,7 +49,7 @@
 }
 
 .principles article > span {
-  color: var(--color-accent);
+  color: var(--color-surface);
   font-size: var(--font-size-xs);
   font-weight: var(--font-weight-semibold);
   letter-spacing: 0.1em;
@@ -168,7 +168,7 @@
   gap: var(--space-4);
   padding: var(--space-4) var(--space-5);
   border-radius: var(--radius-sm);
-  background: var(--color-primary);
+  background: var(--color-brand-orange);
   color: var(--color-surface);
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-semibold);
@@ -179,7 +179,7 @@
 }
 
 .contactLink:hover {
-  background: var(--color-secondary);
+  background: var(--color-brand-orange-hover);
   color: var(--color-surface);
 }
 
@@ -197,7 +197,7 @@
 }
 
 .contactSecondary:hover {
-  background: var(--color-primary);
+  background: var(--color-brand-orange);
   color: var(--color-surface);
 }
 
