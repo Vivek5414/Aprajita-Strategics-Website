@@ -49,6 +49,9 @@ function QuickEnquiryForm({
 }) {
   const [errors, setErrors] = useState<QuickEnquiryErrors>({});
   const [whatsappUrl, setWhatsappUrl] = useState<string | null>(null);
+  const [submissionError, setSubmissionError] = useState("");
+  const [submitting, setSubmitting] = useState(false);
+  const [referenceCode, setReferenceCode] = useState("");
   const formRef = useRef<HTMLFormElement>(null);
   const whatsappLinkRef = useRef<HTMLAnchorElement>(null);
 
@@ -79,7 +82,7 @@ function QuickEnquiryForm({
     });
   }
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
     const formData = new FormData(event.currentTarget);
@@ -113,16 +116,45 @@ function QuickEnquiryForm({
       return;
     }
 
+    setSubmitting(true);
+    setSubmissionError("");
+    const response = await fetch("/api/enquiries", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name,
+        phone,
+        service,
+        source: "WEBSITE_QUICK",
+        website: String(formData.get("website") ?? ""),
+      }),
+    }).catch(() => null);
+
+    if (!response?.ok) {
+      const result = response
+        ? ((await response.json().catch(() => ({}))) as { error?: string })
+        : {};
+      setSubmissionError(
+        result.error ?? "We could not submit your enquiry. Please try again.",
+      );
+      setSubmitting(false);
+      return;
+    }
+
+    const result = (await response.json()) as { referenceCode: string };
+    setReferenceCode(result.referenceCode);
     const selectedService = services.find((item) => item.slug === service);
     const message = [
       "Hello, I would like to discuss a project with APRAJITA STRATEGICS.",
       `Full name: ${name}`,
       `Phone number: ${phone}`,
       `Service required: ${selectedService?.title ?? service}`,
+      `Enquiry reference: ${result.referenceCode}`,
     ]
       .filter(Boolean)
       .join("\n");
     setWhatsappUrl(getWhatsAppHref(message));
+    setSubmitting(false);
   }
 
   if (whatsappUrl) {
@@ -130,8 +162,9 @@ function QuickEnquiryForm({
       <div className={styles.handoffPanel} role="status" aria-live="polite">
         <h3>Message ready to send.</h3>
         <p>
-          Your message is ready to review. WhatsApp has not sent it; submit the
-          message there when you are ready.
+          Your enquiry is recorded with reference{" "}
+          <strong>{referenceCode}.</strong>{" "}
+          The WhatsApp message is only a draft; WhatsApp has not sent it.
         </p>
         <a
           className={`button button--primary ${styles.submit}`}
@@ -158,6 +191,10 @@ function QuickEnquiryForm({
       onSubmit={handleSubmit}
       noValidate
     >
+      <div className={styles.honeypot} aria-hidden="true">
+        <label htmlFor="enquiry-modal-website">Leave this field empty</label>
+        <input id="enquiry-modal-website" name="website" tabIndex={-1} autoComplete="off" />
+      </div>
       <div className={styles.quickFields}>
         <div className={styles.field}>
           <label htmlFor="enquiry-modal-name">
@@ -238,9 +275,11 @@ function QuickEnquiryForm({
       <button
         className={`button button--primary ${styles.submit}`}
         type="submit"
+        disabled={submitting}
       >
-        Send Message <ArrowRight size={17} aria-hidden="true" />
+        {submitting ? "Submitting..." : "Send Message"} <ArrowRight size={17} aria-hidden="true" />
       </button>
+      {submissionError ? <p className={styles.error} role="alert">{submissionError}</p> : null}
     </form>
   );
 }
@@ -248,6 +287,9 @@ function QuickEnquiryForm({
 function ContactForm() {
   const [formState, setFormState] = useState<ContactFormState>("idle");
   const [whatsappUrl, setWhatsappUrl] = useState<string | null>(null);
+  const [submissionError, setSubmissionError] = useState("");
+  const [submitting, setSubmitting] = useState(false);
+  const [referenceCode, setReferenceCode] = useState("");
   const formId = "enquiry-contact";
   const whatsappLinkRef = useRef<HTMLAnchorElement>(null);
 
@@ -255,11 +297,41 @@ function ContactForm() {
     if (whatsappUrl) whatsappLinkRef.current?.focus();
   }, [whatsappUrl]);
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
     const serviceSlug = String(formData.get("service") ?? "");
     const service = services.find((item) => item.slug === serviceSlug);
+    setSubmitting(true);
+    setSubmissionError("");
+    const response = await fetch("/api/enquiries", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name: String(formData.get("name") ?? "").trim(),
+        email: String(formData.get("email") ?? "").trim(),
+        phone: String(formData.get("phone") ?? "").trim(),
+        company: String(formData.get("company") ?? "").trim(),
+        service: serviceSlug,
+        projectLocation: String(formData.get("projectLocation") ?? "").trim(),
+        requirements: String(formData.get("message") ?? "").trim(),
+        source: "WEBSITE_CONTACT",
+        website: String(formData.get("website") ?? ""),
+      }),
+    }).catch(() => null);
+    if (!response?.ok) {
+      const result = response
+        ? ((await response.json().catch(() => ({}))) as { error?: string })
+        : {};
+      setSubmissionError(
+        result.error ?? "We could not submit your enquiry. Please try again.",
+      );
+      setFormState("invalid");
+      setSubmitting(false);
+      return;
+    }
+    const result = (await response.json()) as { referenceCode: string };
+    setReferenceCode(result.referenceCode);
     const message = [
       "Hello, I would like to discuss a project with APRAJITA STRATEGICS.",
       `Name: ${String(formData.get("name") ?? "").trim()}`,
@@ -269,9 +341,11 @@ function ContactForm() {
       `Service: ${service?.title ?? "Not specified"}`,
       `Project location: ${String(formData.get("projectLocation") ?? "").trim() || "Not provided"}`,
       `Message: ${String(formData.get("message") ?? "").trim()}`,
+      `Enquiry reference: ${result.referenceCode}`,
     ].join("\n");
     setWhatsappUrl(getWhatsAppHref(message));
     setFormState("prepared");
+    setSubmitting(false);
   }
 
   return (
@@ -284,8 +358,13 @@ function ContactForm() {
           setFormState("idle");
           setWhatsappUrl(null);
         }
+        setSubmissionError("");
       }}
     >
+      <div className={styles.honeypot} aria-hidden="true">
+        <label htmlFor={`${formId}-website`}>Leave this field empty</label>
+        <input id={`${formId}-website`} name="website" tabIndex={-1} autoComplete="off" />
+      </div>
       <div className={styles.fields}>
         <div className={styles.field}>
           <label htmlFor={`${formId}-name`}>
@@ -377,10 +456,12 @@ function ContactForm() {
       <button
         className={`button button--primary ${styles.submit}`}
         type="submit"
+        disabled={submitting}
       >
-        Send Message
+        {submitting ? "Submitting..." : "Send Message"}
         <ArrowRight size={17} aria-hidden="true" />
       </button>
+      {submissionError ? <p className={styles.error} role="alert">{submissionError}</p> : null}
 
       <p
         className={`${styles.status} ${formState === "prepared" ? styles.prepared : ""} ${formState === "invalid" ? styles.error : ""}`}
@@ -388,9 +469,9 @@ function ContactForm() {
         role={formState === "prepared" || formState === "invalid" ? "status" : undefined}
       >
         {formState === "prepared"
-          ? "Your message is ready to review and send in WhatsApp."
+          ? `Your enquiry is recorded (reference ${referenceCode}). WhatsApp has not sent your message.`
           : formState === "invalid"
-            ? "Please complete the required fields and check that your email and phone number are valid."
+            ? submissionError || "Please complete the required fields and check that your email and phone number are valid."
             : ""}
       </p>
       {whatsappUrl ? (

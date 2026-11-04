@@ -1,0 +1,229 @@
+.page {
+  max-width: 1100px;
+  min-height: 65vh;
+  margin: 0 auto;
+  padding: clamp(1.5rem, 4vw, 3rem) clamp(1rem, 4vw, 2rem) 4rem;
+}
+
+.backLink {
+  display: inline-block;
+  margin-bottom: 1.25rem;
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.5rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-card);
+}
+
+.eyebrow {
+  color: var(--color-brand-orange-text);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--letter-spacing-eyebrow);
+  text-transform: uppercase;
+}
+
+.header h1 {
+  margin-top: 0.35rem;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+}
+
+.header > div > p:last-child {
+  margin-top: 0.5rem;
+  color: var(--color-text-muted);
+}
+
+.tabs {
+  display: flex;
+  gap: 0.4rem;
+  overflow-x: auto;
+  margin-top: 1.25rem;
+  padding-bottom: 0.25rem;
+}
+
+.tabs button {
+  flex: 0 0 auto;
+  padding: 0.7rem 0.85rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  background: var(--color-surface);
+  color: var(--color-text);
+  cursor: pointer;
+  font-size: var(--font-size-sm);
+}
+
+.tabs .activeTab {
+  border-color: var(--color-brand-orange);
+  background: var(--color-brand-orange);
+  color: #fff;
+}
+
+.panel {
+  margin-top: 1rem;
+  padding: clamp(1rem, 3vw, 1.75rem);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-card);
+}
+
+.panel h2 {
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
+}
+
+.subheading {
+  margin-top: 2rem;
+}
+
+.details {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.8rem;
+}
+
+.details > div {
+  padding: 0.85rem;
+  border-radius: var(--radius-md);
+  background: var(--color-background-secondary);
+}
+
+.details dt {
+  color: var(--color-text-muted);
+  font-size: 0.75rem;
+}
+
+.details dd {
+  margin: 0.2rem 0 0;
+  overflow-wrap: anywhere;
+  font-weight: var(--font-weight-semibold);
+}
+
+.form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.9rem;
+}
+
+.form label,
+.uploadForm label {
+  display: grid;
+  gap: 0.35rem;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+}
+
+.form input,
+.form textarea,
+.uploadForm input {
+  width: 100%;
+  min-height: var(--control-height);
+  padding: 0.65rem 0.8rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  color: var(--color-text);
+}
+
+.form label:has(textarea),
+.form h2,
+.form button {
+  grid-column: 1 / -1;
+}
+
+.form button,
+.uploadForm button,
+.recordList button {
+  justify-self: start;
+  min-height: var(--control-height-compact);
+  padding: 0.55rem 0.85rem;
+  border: 0;
+  border-radius: var(--radius-md);
+  background: var(--color-brand-orange);
+  color: #fff;
+  cursor: pointer;
+  font-weight: var(--font-weight-semibold);
+}
+
+.recordList {
+  display: grid;
+  gap: 0.75rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.recordList li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.9rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.recordList p {
+  margin-top: 0.25rem;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+}
+
+.recordList button {
+  flex: 0 0 auto;
+}
+
+.uploadForm {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 0.85rem;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.uploadForm label {
+  flex: 1 1 22rem;
+}
+
+.emptyState {
+  padding: 1rem;
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius-md);
+  color: var(--color-text-muted);
+}
+
+.alert,
+.message {
+  margin-top: 1rem;
+  padding: 0.8rem 1rem;
+  border-radius: var(--radius-md);
+  background: var(--color-background-secondary);
+}
+
+.alert {
+  color: var(--color-brand-orange-text);
+}
+
+@media (max-width: 40rem) {
+  .details,
+  .form {
+    grid-template-columns: 1fr;
+  }
+
+  .recordList li {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}

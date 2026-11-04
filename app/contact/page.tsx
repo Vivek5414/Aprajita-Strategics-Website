@@ -131,8 +131,8 @@ export default function ContactPage() {
               <p className={styles.formEyebrow}>Project enquiry</p>
               <h2>Tell us what you are planning.</h2>
               <p className={styles.formIntroduction}>
-                Provide a few details to help frame the conversation. This
-                frontend demo does not transmit or store form submissions.
+                Share a few details about your project. Your enquiry will be
+                securely recorded so our team can follow up.
               </p>
               <EnquiryForm variant="contact" />
             </div>

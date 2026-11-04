@@ -45,3 +45,25 @@
   margin: var(--space-4) auto var(--space-6);
   color: var(--color-text-muted);
 }
+
+.loginForm {
+  display: grid;
+  gap: var(--space-3);
+  max-width: 24rem;
+  margin: var(--space-6) auto;
+  text-align: left;
+}
+
+.loginForm label {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+}
+
+.loginForm input {
+  min-height: var(--control-height);
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  color: var(--color-text);
+}

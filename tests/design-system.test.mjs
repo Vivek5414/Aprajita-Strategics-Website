@@ -65,6 +65,27 @@ test("accessibility focus and reduced-motion styles are present", () => {
   assert.match(globalStyles, /@media \(prefers-reduced-motion: reduce\)/);
 });
 
+test("header and footer use the appropriate responsive logo assets", () => {
+  const siteHeader = readFileSync(
+    "app/components/layout/SiteHeader.tsx",
+    "utf8",
+  );
+  const siteFooter = readFileSync(
+    "app/components/layout/SiteFooter.tsx",
+    "utf8",
+  );
+  const footerStyles = readFileSync(
+    "app/components/layout/SiteFooter.module.css",
+    "utf8",
+  );
+
+  assert.match(siteHeader, /src="\/images\/aprajita-logo-horizontal\.png"/);
+  assert.match(siteFooter, /src="\/images\/aprajita-logo-horizontal\.png"/);
+  assert.match(footerStyles, /aspect-ratio:\s*3\s*\/\s*1/);
+  assert.match(footerStyles, /background:\s*var\(--color-surface\)/);
+  assert.doesNotMatch(footerStyles, /width:\s*6\.25rem;\s*height:\s*6\.25rem/);
+});
+
 test("homepage sections follow the requested content order", () => {
   const sections = [
     "<Hero />",
